@@ -1,0 +1,58 @@
+.api_content_detail_container {
+
+  div.api_content_modal {
+    div.api_content {
+
+      display: flex;
+      flex-direction: row;
+      width: 500px;
+
+      .steps {
+
+        flex: 0 0 auto;
+
+        span.ant-steps-icon {
+          top: 5px;
+        }
+      }
+
+      .form {
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+
+        .desc {
+          height: 30px;
+          border-radius: 5px;
+          margin: 10px 20px;
+          width: 300px;
+          padding-left: 5px;
+
+        }
+
+        .tbl_name {
+          margin: 20px 20px;
+          width: 300px;
+        }
+
+        .result_columns {
+          margin: 20px 20px;
+          width: 300px;
+        }
+
+        .query_column {
+          height: 30px;
+          border-radius: 5px;
+          margin: 20px 20px;
+          width: 300px;
+          padding-left: 5px;
+
+        }
+
+      }
+
+    }
+  }
+
+}
+

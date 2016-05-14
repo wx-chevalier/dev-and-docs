@@ -1,0 +1,951 @@
+webpackJsonp([4],{
+
+/***/ 0:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(5);
+
+	var _user_login = __webpack_require__(408);
+
+	var _user_login2 = _interopRequireDefault(_user_login);
+
+	var _login = __webpack_require__(421);
+
+	var _login2 = _interopRequireDefault(_login);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by apple on 16/5/9.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+
+	var userLoginModel = new _user_login2.default();
+
+	//这里没有使用Redux,直接引入LoginComponent即可
+
+	var LoginContainer = function (_Component) {
+	    _inherits(LoginContainer, _Component);
+
+	    function LoginContainer() {
+	        _classCallCheck(this, LoginContainer);
+
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(LoginContainer).apply(this, arguments));
+	    }
+
+	    _createClass(LoginContainer, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(_login2.default, { doLogin: userLoginModel.login });
+	        }
+	    }]);
+
+	    return LoginContainer;
+	}(_react.Component);
+
+	(0, _reactDom.render)(_react2.default.createElement(LoginContainer, null), document.getElementById('root'));
+
+/***/ },
+
+/***/ 25:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	/**
+	 * Created by apple on 16/5/3.
+	 */
+	//自动进行全局的ES6 Promise的Polyfill
+	__webpack_require__(17).polyfill();
+	__webpack_require__(70);
+
+	/**
+	 * @function 基础的模型类,包含了基本的URL定义
+	 */
+
+	var Model = function () {
+	    function Model() {
+	        _classCallCheck(this, Model);
+	    }
+
+	    _createClass(Model, [{
+	        key: 'checkStatus',
+	        value: function checkStatus(response) {
+	            if (response.status >= 200 && response.status < 300) {
+	                return response;
+	            } else {
+	                var error = new Error(response.statusText);
+	                error.response = response;
+	                throw error;
+	            }
+	        }
+	    }, {
+	        key: 'parseJSON',
+	        value: function parseJSON(response) {
+	            return response.json();
+	        }
+
+	        /**
+	         * @function 利用get方法发起请求
+	         * @param path 请求的路径(包括路径参数)
+	         * @param requestData 请求的参数
+	         * @param action 请求的类型
+	         * @returns {Promise.<TResult>|*} Promise.then((data)=>{},(error)=>{});
+	         */
+
+	    }, {
+	        key: 'get',
+	        value: function get(_ref) {
+	            var _ref$path = _ref.path;
+	            var path = _ref$path === undefined ? "" : _ref$path;
+	            var _ref$requestData = _ref.requestData;
+	            var requestData = _ref$requestData === undefined ? {} : _ref$requestData;
+	            var _ref$action = _ref.action;
+	            var action = _ref$action === undefined ? "GET" : _ref$action;
+
+
+	            //将requestData序列化为JSON
+	            var requestDataString = JSON.stringify(requestData);
+
+	            //将字符串链接
+	            var packagedRequestURL = '' + Model.BASE_URL + path + '?requestData=' + requestDataString + '&action=' + action;
+
+	            return fetch(packagedRequestURL).then(checkStatus).then(parseJSON);
+	        }
+	    }, {
+	        key: 'post',
+	        value: function post(_ref2) {
+	            var _ref2$path = _ref2.path;
+	            var path = _ref2$path === undefined ? "/" : _ref2$path;
+	            var _ref2$requestData = _ref2.requestData;
+	            var requestData = _ref2$requestData === undefined ? {} : _ref2$requestData;
+	            var _ref2$action = _ref2.action;
+	            var action = _ref2$action === undefined ? "POST" : _ref2$action;
+	        }
+	    }, {
+	        key: 'put',
+	        value: function put(_ref3) {
+	            var _ref3$path = _ref3.path;
+	            var path = _ref3$path === undefined ? "/" : _ref3$path;
+	            var _ref3$requestData = _ref3.requestData;
+	            var requestData = _ref3$requestData === undefined ? {} : _ref3$requestData;
+	            var _ref3$action = _ref3.action;
+	            var action = _ref3$action === undefined ? "put" : _ref3$action;
+	        }
+	    }, {
+	        key: 'delete',
+	        value: function _delete(_ref4) {
+	            var _ref4$path = _ref4.path;
+	            var path = _ref4$path === undefined ? "/" : _ref4$path;
+	            var _ref4$requestData = _ref4.requestData;
+	            var requestData = _ref4$requestData === undefined ? {} : _ref4$requestData;
+	            var _ref4$action = _ref4.action;
+	            var action = _ref4$action === undefined ? "DELETE" : _ref4$action;
+	        }
+	    }]);
+
+	    return Model;
+	}();
+
+	//基础的URL
+
+
+	exports.default = Model;
+	Model.BASE_URL = "http://localhost/";
+
+	Model.testData = {};
+
+	Model.testData.error = {};
+
+/***/ },
+
+/***/ 68:
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+
+/***/ 70:
+/***/ function(module, exports, __webpack_require__) {
+
+	// the whatwg-fetch polyfill installs the fetch() function
+	// on the global object (window or self)
+	//
+	// Return that as the export for use in Webpack, Browserify etc.
+	__webpack_require__(75);
+	module.exports = self.fetch.bind(self);
+
+
+/***/ },
+
+/***/ 75:
+/***/ function(module, exports) {
+
+	(function() {
+	  'use strict';
+
+	  if (self.fetch) {
+	    return
+	  }
+
+	  function normalizeName(name) {
+	    if (typeof name !== 'string') {
+	      name = String(name)
+	    }
+	    if (/[^a-z0-9\-#$%&'*+.\^_`|~]/i.test(name)) {
+	      throw new TypeError('Invalid character in header field name')
+	    }
+	    return name.toLowerCase()
+	  }
+
+	  function normalizeValue(value) {
+	    if (typeof value !== 'string') {
+	      value = String(value)
+	    }
+	    return value
+	  }
+
+	  function Headers(headers) {
+	    this.map = {}
+
+	    if (headers instanceof Headers) {
+	      headers.forEach(function(value, name) {
+	        this.append(name, value)
+	      }, this)
+
+	    } else if (headers) {
+	      Object.getOwnPropertyNames(headers).forEach(function(name) {
+	        this.append(name, headers[name])
+	      }, this)
+	    }
+	  }
+
+	  Headers.prototype.append = function(name, value) {
+	    name = normalizeName(name)
+	    value = normalizeValue(value)
+	    var list = this.map[name]
+	    if (!list) {
+	      list = []
+	      this.map[name] = list
+	    }
+	    list.push(value)
+	  }
+
+	  Headers.prototype['delete'] = function(name) {
+	    delete this.map[normalizeName(name)]
+	  }
+
+	  Headers.prototype.get = function(name) {
+	    var values = this.map[normalizeName(name)]
+	    return values ? values[0] : null
+	  }
+
+	  Headers.prototype.getAll = function(name) {
+	    return this.map[normalizeName(name)] || []
+	  }
+
+	  Headers.prototype.has = function(name) {
+	    return this.map.hasOwnProperty(normalizeName(name))
+	  }
+
+	  Headers.prototype.set = function(name, value) {
+	    this.map[normalizeName(name)] = [normalizeValue(value)]
+	  }
+
+	  Headers.prototype.forEach = function(callback, thisArg) {
+	    Object.getOwnPropertyNames(this.map).forEach(function(name) {
+	      this.map[name].forEach(function(value) {
+	        callback.call(thisArg, value, name, this)
+	      }, this)
+	    }, this)
+	  }
+
+	  function consumed(body) {
+	    if (body.bodyUsed) {
+	      return Promise.reject(new TypeError('Already read'))
+	    }
+	    body.bodyUsed = true
+	  }
+
+	  function fileReaderReady(reader) {
+	    return new Promise(function(resolve, reject) {
+	      reader.onload = function() {
+	        resolve(reader.result)
+	      }
+	      reader.onerror = function() {
+	        reject(reader.error)
+	      }
+	    })
+	  }
+
+	  function readBlobAsArrayBuffer(blob) {
+	    var reader = new FileReader()
+	    reader.readAsArrayBuffer(blob)
+	    return fileReaderReady(reader)
+	  }
+
+	  function readBlobAsText(blob) {
+	    var reader = new FileReader()
+	    reader.readAsText(blob)
+	    return fileReaderReady(reader)
+	  }
+
+	  var support = {
+	    blob: 'FileReader' in self && 'Blob' in self && (function() {
+	      try {
+	        new Blob();
+	        return true
+	      } catch(e) {
+	        return false
+	      }
+	    })(),
+	    formData: 'FormData' in self,
+	    arrayBuffer: 'ArrayBuffer' in self
+	  }
+
+	  function Body() {
+	    this.bodyUsed = false
+
+
+	    this._initBody = function(body) {
+	      this._bodyInit = body
+	      if (typeof body === 'string') {
+	        this._bodyText = body
+	      } else if (support.blob && Blob.prototype.isPrototypeOf(body)) {
+	        this._bodyBlob = body
+	      } else if (support.formData && FormData.prototype.isPrototypeOf(body)) {
+	        this._bodyFormData = body
+	      } else if (!body) {
+	        this._bodyText = ''
+	      } else if (support.arrayBuffer && ArrayBuffer.prototype.isPrototypeOf(body)) {
+	        // Only support ArrayBuffers for POST method.
+	        // Receiving ArrayBuffers happens via Blobs, instead.
+	      } else {
+	        throw new Error('unsupported BodyInit type')
+	      }
+	    }
+
+	    if (support.blob) {
+	      this.blob = function() {
+	        var rejected = consumed(this)
+	        if (rejected) {
+	          return rejected
+	        }
+
+	        if (this._bodyBlob) {
+	          return Promise.resolve(this._bodyBlob)
+	        } else if (this._bodyFormData) {
+	          throw new Error('could not read FormData body as blob')
+	        } else {
+	          return Promise.resolve(new Blob([this._bodyText]))
+	        }
+	      }
+
+	      this.arrayBuffer = function() {
+	        return this.blob().then(readBlobAsArrayBuffer)
+	      }
+
+	      this.text = function() {
+	        var rejected = consumed(this)
+	        if (rejected) {
+	          return rejected
+	        }
+
+	        if (this._bodyBlob) {
+	          return readBlobAsText(this._bodyBlob)
+	        } else if (this._bodyFormData) {
+	          throw new Error('could not read FormData body as text')
+	        } else {
+	          return Promise.resolve(this._bodyText)
+	        }
+	      }
+	    } else {
+	      this.text = function() {
+	        var rejected = consumed(this)
+	        return rejected ? rejected : Promise.resolve(this._bodyText)
+	      }
+	    }
+
+	    if (support.formData) {
+	      this.formData = function() {
+	        return this.text().then(decode)
+	      }
+	    }
+
+	    this.json = function() {
+	      return this.text().then(JSON.parse)
+	    }
+
+	    return this
+	  }
+
+	  // HTTP methods whose capitalization should be normalized
+	  var methods = ['DELETE', 'GET', 'HEAD', 'OPTIONS', 'POST', 'PUT']
+
+	  function normalizeMethod(method) {
+	    var upcased = method.toUpperCase()
+	    return (methods.indexOf(upcased) > -1) ? upcased : method
+	  }
+
+	  function Request(input, options) {
+	    options = options || {}
+	    var body = options.body
+	    if (Request.prototype.isPrototypeOf(input)) {
+	      if (input.bodyUsed) {
+	        throw new TypeError('Already read')
+	      }
+	      this.url = input.url
+	      this.credentials = input.credentials
+	      if (!options.headers) {
+	        this.headers = new Headers(input.headers)
+	      }
+	      this.method = input.method
+	      this.mode = input.mode
+	      if (!body) {
+	        body = input._bodyInit
+	        input.bodyUsed = true
+	      }
+	    } else {
+	      this.url = input
+	    }
+
+	    this.credentials = options.credentials || this.credentials || 'omit'
+	    if (options.headers || !this.headers) {
+	      this.headers = new Headers(options.headers)
+	    }
+	    this.method = normalizeMethod(options.method || this.method || 'GET')
+	    this.mode = options.mode || this.mode || null
+	    this.referrer = null
+
+	    if ((this.method === 'GET' || this.method === 'HEAD') && body) {
+	      throw new TypeError('Body not allowed for GET or HEAD requests')
+	    }
+	    this._initBody(body)
+	  }
+
+	  Request.prototype.clone = function() {
+	    return new Request(this)
+	  }
+
+	  function decode(body) {
+	    var form = new FormData()
+	    body.trim().split('&').forEach(function(bytes) {
+	      if (bytes) {
+	        var split = bytes.split('=')
+	        var name = split.shift().replace(/\+/g, ' ')
+	        var value = split.join('=').replace(/\+/g, ' ')
+	        form.append(decodeURIComponent(name), decodeURIComponent(value))
+	      }
+	    })
+	    return form
+	  }
+
+	  function headers(xhr) {
+	    var head = new Headers()
+	    var pairs = xhr.getAllResponseHeaders().trim().split('\n')
+	    pairs.forEach(function(header) {
+	      var split = header.trim().split(':')
+	      var key = split.shift().trim()
+	      var value = split.join(':').trim()
+	      head.append(key, value)
+	    })
+	    return head
+	  }
+
+	  Body.call(Request.prototype)
+
+	  function Response(bodyInit, options) {
+	    if (!options) {
+	      options = {}
+	    }
+
+	    this._initBody(bodyInit)
+	    this.type = 'default'
+	    this.status = options.status
+	    this.ok = this.status >= 200 && this.status < 300
+	    this.statusText = options.statusText
+	    this.headers = options.headers instanceof Headers ? options.headers : new Headers(options.headers)
+	    this.url = options.url || ''
+	  }
+
+	  Body.call(Response.prototype)
+
+	  Response.prototype.clone = function() {
+	    return new Response(this._bodyInit, {
+	      status: this.status,
+	      statusText: this.statusText,
+	      headers: new Headers(this.headers),
+	      url: this.url
+	    })
+	  }
+
+	  Response.error = function() {
+	    var response = new Response(null, {status: 0, statusText: ''})
+	    response.type = 'error'
+	    return response
+	  }
+
+	  var redirectStatuses = [301, 302, 303, 307, 308]
+
+	  Response.redirect = function(url, status) {
+	    if (redirectStatuses.indexOf(status) === -1) {
+	      throw new RangeError('Invalid status code')
+	    }
+
+	    return new Response(null, {status: status, headers: {location: url}})
+	  }
+
+	  self.Headers = Headers;
+	  self.Request = Request;
+	  self.Response = Response;
+
+	  self.fetch = function(input, init) {
+	    return new Promise(function(resolve, reject) {
+	      var request
+	      if (Request.prototype.isPrototypeOf(input) && !init) {
+	        request = input
+	      } else {
+	        request = new Request(input, init)
+	      }
+
+	      var xhr = new XMLHttpRequest()
+
+	      function responseURL() {
+	        if ('responseURL' in xhr) {
+	          return xhr.responseURL
+	        }
+
+	        // Avoid security warnings on getResponseHeader when not allowed by CORS
+	        if (/^X-Request-URL:/m.test(xhr.getAllResponseHeaders())) {
+	          return xhr.getResponseHeader('X-Request-URL')
+	        }
+
+	        return;
+	      }
+
+	      xhr.onload = function() {
+	        var status = (xhr.status === 1223) ? 204 : xhr.status
+	        if (status < 100 || status > 599) {
+	          reject(new TypeError('Network request failed'))
+	          return
+	        }
+	        var options = {
+	          status: status,
+	          statusText: xhr.statusText,
+	          headers: headers(xhr),
+	          url: responseURL()
+	        }
+	        var body = 'response' in xhr ? xhr.response : xhr.responseText;
+	        resolve(new Response(body, options))
+	      }
+
+	      xhr.onerror = function() {
+	        reject(new TypeError('Network request failed'))
+	      }
+
+	      xhr.open(request.method, request.url, true)
+
+	      if (request.credentials === 'include') {
+	        xhr.withCredentials = true
+	      }
+
+	      if ('responseType' in xhr && support.blob) {
+	        xhr.responseType = 'blob'
+	      }
+
+	      request.headers.forEach(function(value, name) {
+	        xhr.setRequestHeader(name, value)
+	      })
+
+	      xhr.send(typeof request._bodyInit === 'undefined' ? null : request._bodyInit)
+	    })
+	  }
+	  self.fetch.polyfill = true
+	})();
+
+
+/***/ },
+
+/***/ 408:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _model = __webpack_require__(25);
+
+	var _model2 = _interopRequireDefault(_model);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Promise = __webpack_require__(17).Promise;
+	/**
+	 * Created by apple on 16/5/9.
+	 */
+
+	var UserLoginModel = function (_Model) {
+	    _inherits(UserLoginModel, _Model);
+
+	    function UserLoginModel() {
+	        _classCallCheck(this, UserLoginModel);
+
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(UserLoginModel).call(this));
+
+	        _this.dev = true;
+
+	        _this.login = _this.login.bind(_this);
+	        return _this;
+	    }
+
+	    /**
+	     * @function 执行登录操作
+	     * @param username 用户名
+	     * @param password 密码
+	     * @returns {*} 返回一个Promise对象
+	     */
+
+
+	    _createClass(UserLoginModel, [{
+	        key: "login",
+	        value: function login(username, password, role) {
+	            var _this2 = this;
+
+	            console.log(username + " " + password + " " + role);
+
+	            return new Promise(function (resolve, reject) {
+
+	                if (_this2.dev == true) {
+	                    //将登录时候的role设置为当前role
+	                    UserLoginModel.testData.login.success.role = role;
+
+	                    //返回测试数据
+	                    resolve(UserLoginModel.testData.login.success);
+	                }
+	            });
+	        }
+
+	        /**
+	         * @function 执行登出操作
+	         * @returns Promise
+	         */
+
+	    }, {
+	        key: "logout",
+	        value: function logout() {}
+	    }]);
+
+	    return UserLoginModel;
+	}(_model2.default);
+
+	/**
+	 * @function 登录的Mock数据
+	 * @type {{success: {code: number, desc: string, token: string}, error: {code: number, desc: string}}}
+	 */
+
+
+	exports.default = UserLoginModel;
+	UserLoginModel.testData = {};
+
+	UserLoginModel.testData.login = {
+	    success: {
+	        code: 200,
+	        desc: "登录成功",
+	        role: "ContentManager", //用户角色 Admin(1), KeyManager(2), APIManager(4), ContentManager(8);
+	        token: "123456789"
+	    },
+	    error: {
+	        code: 401,
+	        desc: "登录失败"
+	    }
+	};
+
+	/**
+	 * @function 登出时候的Mock数据
+	 * @type {{success: {}}}
+	 */
+	UserLoginModel.testData.logout = {
+	    success: {}
+	};
+
+/***/ },
+
+/***/ 421:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _antd = __webpack_require__(16);
+
+	__webpack_require__(68);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by apple on 16/4/27.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+
+	var Option = _antd.Select.Option;
+	__webpack_require__(440);
+
+	var LoginComponent = function (_Component) {
+	    _inherits(LoginComponent, _Component);
+
+	    function LoginComponent(props) {
+	        _classCallCheck(this, LoginComponent);
+
+	        //将Props
+
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(LoginComponent).call(this, props));
+
+	        _this.state = _extends({}, props);
+
+	        //初始化内部状态
+	        _this.state.username = "";
+
+	        _this.state.password = "";
+
+	        _this.state.role = "ContentManager";
+
+	        _this.handleClickLoginButton = _this.handleClickLoginButton.bind(_this);
+	        return _this;
+	    }
+
+	    /**
+	     * @function 处理登录按钮的点击事件
+	     * @param e 传入的参数
+	     */
+
+
+	    _createClass(LoginComponent, [{
+	        key: "handleClickLoginButton",
+	        value: function handleClickLoginButton(e) {
+
+	            console.log(e);
+
+	            //判断是否为空,基本的判断
+	            if (this.state.username === "" || this.state.password === "") {
+	                _antd.message.error("用户名或者密码缺失");
+	            }
+
+	            //调用传入的处理方法
+	            this.props.doLogin(this.state.username, this.state.password, this.state.role).then(function (result) {
+
+	                console.log(result);
+
+	                //登录成功
+	                _antd.message.success("登录成功");
+
+	                //跳转到对应页面
+	                switch (result.role) {
+
+	                    //内容管理员
+	                    case "ContentManager":
+
+	                        //跳转到对应的内容管理界面
+	                        window.location.href = "./api.html";
+
+	                        return;
+
+	                    //权限管理员
+	                    case "APIManager":
+
+	                        //跳转到对应的内容管理界面
+	                        window.location.href = "./auth.html";
+
+	                        return;
+
+	                    //密钥管理员
+	                    case "KeyManager":
+
+	                        //跳转到对应的内容管理界面
+	                        window.location.href = "./key.html";
+
+	                        return;
+
+	                    //超级管理员
+	                    case "Admin":
+
+	                        //跳转到对应的内容管理界面
+	                        window.location.href = "./admin.html";
+
+	                        return;
+
+	                    default:
+
+	                        return;
+	                }
+	            }, function (error) {
+	                //登录失败
+
+	                //跳转到对应页面
+	            });
+	        }
+
+	        //返回构造的界面
+
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            var _this2 = this;
+
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "login_container" },
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "login" },
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "login-header" },
+	                        _react2.default.createElement(
+	                            "h1",
+	                            null,
+	                            "登录"
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "login-form" },
+	                        _react2.default.createElement(
+	                            "h3",
+	                            null,
+	                            "用户名:"
+	                        ),
+	                        _react2.default.createElement("input", { type: "text", placeholder: "Username", onChange: function onChange(event) {
+	                                _this2.setState({ username: event.target.value });
+	                            } }),
+	                        _react2.default.createElement("br", null),
+	                        _react2.default.createElement(
+	                            "h3",
+	                            null,
+	                            "密码:"
+	                        ),
+	                        _react2.default.createElement("input", { type: "password", placeholder: "Password",
+	                            onChange: function onChange(event) {
+	                                _this2.setState({ password: event.target.value });
+	                            }
+	                        }),
+	                        _react2.default.createElement(
+	                            "h3",
+	                            null,
+	                            "角色:"
+	                        ),
+	                        _react2.default.createElement(
+	                            _antd.Select,
+	                            { defaultValue: "ContentManager", onChange: function onChange(value) {
+	                                    _this2.setState({
+	                                        role: value
+	                                    });
+	                                } },
+	                            _react2.default.createElement(
+	                                Option,
+	                                { value: "ContentManager" },
+	                                "内容管理员"
+	                            ),
+	                            _react2.default.createElement(
+	                                Option,
+	                                { value: "APIManager" },
+	                                "权限管理员"
+	                            ),
+	                            _react2.default.createElement(
+	                                Option,
+	                                { value: "KeyManager" },
+	                                "密钥管理员"
+	                            ),
+	                            _react2.default.createElement(
+	                                Option,
+	                                { value: "Admin" },
+	                                "超级管理员"
+	                            )
+	                        ),
+	                        _react2.default.createElement("br", null),
+	                        _react2.default.createElement("br", null),
+	                        _react2.default.createElement("input", { type: "button", value: "登录", className: "login-button", onClick: this.handleClickLoginButton }),
+	                        _react2.default.createElement("br", null),
+	                        _react2.default.createElement(
+	                            "a",
+	                            { className: "sign-up" },
+	                            "注册!"
+	                        ),
+	                        _react2.default.createElement("br", null),
+	                        _react2.default.createElement(
+	                            "h6",
+	                            { className: "no-access" },
+	                            "忘记密码?"
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return LoginComponent;
+	}(_react.Component);
+
+	//定义登录界面的输入的属性
+
+
+	exports.default = LoginComponent;
+	LoginComponent.propTypes = {
+	    //Promise doLogin(username,password)
+	    doLogin: _react2.default.PropTypes.func };
+
+/***/ },
+
+/***/ 440:
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }
+
+});

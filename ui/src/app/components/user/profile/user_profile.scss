@@ -1,0 +1,39 @@
+.user_profile_container {
+
+  .panel {
+    background: white none repeat scroll 0 0;
+    height: 100%;
+    margin: 0px 10px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .basicInfo {
+      display: flex;
+      flex-direction: row;
+
+      .logo {
+        font-size: 40px;
+        padding: 10px;
+        border: 1px solid;
+        border-radius: 100%;
+        margin: 40px;
+      }
+
+      .username {
+        font-size: 20px;
+        margin-top:5%;;
+      }
+    }
+
+    .roleInfo {
+
+      font-size: 15px;
+      div.row {
+        margin: 10px 0px;
+      }
+    }
+
+  }
+
+}

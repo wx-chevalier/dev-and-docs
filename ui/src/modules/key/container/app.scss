@@ -1,0 +1,71 @@
+.container { //主容器
+
+  background: #ececec none repeat scroll 0 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  overflow: hidden;
+
+  .header {
+
+    flex: 0 0 auto;
+
+    height: 10%;
+
+    width: 100%;
+
+  }
+
+  .middle {
+
+    flex: 0 1 auto;
+
+    height: auto;
+
+    .main_container {
+      height: 90%;
+      width: 100%;
+      padding: 20px 0px 20px 20px;
+      display: flex;
+
+      .menu {
+
+        //border-right: 1px solid #e9e9e9;
+        min-width: 200px;
+        flex: 0 0 auto;
+
+      }
+
+      .panel {
+        background: white none repeat scroll 0 0;
+        flex: 1 0 auto;
+        height: 100%;
+        margin: 0px 10px 20px 20px;
+
+        .fixedDataTableLayout_main {
+          z-index: 0;
+        }
+
+        div {
+          border: none;
+        }
+
+      }
+
+    }
+
+  }
+
+  .footer {
+
+    flex: 0 0 auto;
+
+  }
+
+}
