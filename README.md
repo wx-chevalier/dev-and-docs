@@ -13,10 +13,12 @@ ConfigurableAPIServer 目标是提供基于配置的、半自动化的、可供�
 
 # 基本架构
 
+![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/2/1/QQ20170207-0fdfasdfasdfasdfsd.png)
+
 # 交互式复杂查询逻辑构造
 
 我们面临的最终提交给消费者使用的 API 往往是由多个表、多个库，乃至于多个异构存储数据合并转换而来，借鉴自然语言处理或者编译原理的概念，我们可以选择自顶向下的来递归划分处理 API，也可以自底向上的进行合并处理。本文中笔者介绍的过程会以自底向上的合并为主，即
-
+![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/2/1/QQ20170207-01111.png)
 ![](https://coding.net/u/hoteam/p/Cache/git/raw/master/2017/2/1/QQ20170207-0asadas.png)
 
 # 数据操作
