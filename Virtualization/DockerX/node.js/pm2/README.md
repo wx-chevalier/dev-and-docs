@@ -4,8 +4,8 @@
 docker build -t username/node .
 ```
 
-
 # 发布镜像
+
 docker tag username/node localhost:5000/username/node
 docker push localhost:5000/username/node
 
