@@ -1,0 +1,31 @@
+{
+  "name": "nikode",
+  "displayName": "Nikode",
+  "description": "📸  Nikon Digital Camera for your code",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wxyyxc1992/xCompass"
+  },
+  "publisher": "wx",
+  "keywords": ["nikode", "nikon", "screenshot", "snippet", "share"],
+  "galleryBanner": {
+    "color": "#fbfbfb",
+    "theme": "light"
+  },
+  "icon": "icon.png",
+  "categories": ["Other"],
+  "engines": {
+    "vscode": "^1.19.0"
+  },
+  "activationEvents": ["onCommand:nikode.activate"],
+  "main": "./src/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "nikode.activate",
+        "title": "Nikode 📸"
+      }
+    ]
+  }
+}

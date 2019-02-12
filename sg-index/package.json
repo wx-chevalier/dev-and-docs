@@ -1,0 +1,37 @@
+{
+  "name": "toc",
+  "version": "1.0.0",
+  "description": "doc sync & index",
+  "main": "index.js",
+  "scripts": {
+    "ts": "ts-node",
+    "test": "jest"
+  },
+  "author": "wxyyxc1992@github",
+  "license": "ISC",
+  "dependencies": {
+    "algoliasearch": "^3.30.0",
+    "bloom-filters": "^0.5.2",
+    "bloomfilter": "^0.0.18",
+    "chalk": "^2.1.0",
+    "commander": "^2.11.0",
+    "debug": "^3.1.0",
+    "fs-extra": "^4.0.2",
+    "github-api": "^3.0.0",
+    "html-to-text": "^3.3.0",
+    "isomorphic-fetch": "^2.2.1",
+    "markdown-toc": "^1.2.0",
+    "md5": "^2.2.1",
+    "walk-sync": "^0.3.2"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^5.0.4",
+    "@types/jest": "^23.3.5",
+    "@types/md5": "^2.1.33",
+    "@types/node": "^8.0.31",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.10.4",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.1.3"
+  }
+}

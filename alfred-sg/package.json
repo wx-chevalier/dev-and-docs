@@ -1,0 +1,45 @@
+{
+  "name": "alfred-sg",
+  "version": "0.0.8",
+  "description": "Search through the xCompass, Docs & Links powered by Soogle",
+  "license": "MIT",
+  "repository": "wxyyxc1992/xCompass",
+  "author": {
+    "name": "wxyyxc1992",
+    "email": "384924552@qq.com",
+    "url": "https://github.com/wxyyxc1992/xCompass"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava",
+    "postinstall": "alfy-init",
+    "preuninstall": "alfy-cleanup"
+  },
+  "files": [
+    "index.js",
+    "icon.png",
+    "info.plist",
+    "icons",
+    "lib"
+  ],
+  "keywords": [
+    "alfred",
+    "workflow",
+    "xcompass",
+    "Soogle",
+    "documentation",
+    "productivity"
+  ],
+  "dependencies": {
+    "alfy": "^0.7.0",
+    "algoliasearch": "^3.32.0"
+  },
+  "devDependencies": {
+    "alfy-test": "^0.3.0",
+    "ava": "*",
+    "path-exists": "^3.0.0",
+    "xo": "*"
+  }
+}

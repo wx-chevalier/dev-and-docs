@@ -1,19 +1,13 @@
-# CerbeHub: 微服务套装
+# Soogle
 
-CerbeHub 由以下几个部分组成:
+Soogle 是笔者构建自身知识索引、搜索工具的集合。
 
-* endpoint: 基础的端口服务单元
+## alfred-sg
 
-* generator: 端口服务生成器
+- Search in Doc
 
-* engine: 复杂查询引擎
+<img src="https://user-images.githubusercontent.com/5803001/50546216-fd70d480-0c5e-11e9-9b6b-cceaf7860c58.png" width="600px" height="400px" />
 
-* gateway: API 网关与管理
+- Search in links([Awesome-Links](https://github.com/wxyyxc1992/Awesome-Links))
 
-CerbeHub 目前还是 Proof-of-Concept 阶段，各个组件尽量碎片化处理，以增强其可变性与扩展性，详细的开发路标请参考 [Roadmap](./Roadmap.md)。
-
-# About
-
-## Credits
-
-* [eoLinker-API-Gateway](https://github.com/eolinker/eoLinker-API-Gateway): 免费开源的 API 接口网关，可配合接口管理产品使用。
+<img src="https://user-images.githubusercontent.com/5803001/50546165-352b4c80-0c5e-11e9-9f16-fb2a115a3506.png" width="600px" height="400px" />
