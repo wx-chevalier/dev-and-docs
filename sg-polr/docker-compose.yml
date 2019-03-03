@@ -1,0 +1,32 @@
+version: '3.5'
+
+services:
+    polr:
+        image: ajanvier/polr
+        container_name: polr
+        ports:
+            - "80:80"
+        environment:
+            - DB_HOST=mariadb
+            - DB_DATABASE=${DB_DATABASE}
+            - DB_USERNAME=${DB_USERNAME}
+            - DB_PASSWORD=${DB_PASSWORD}
+            - ADMIN_USERNAME=${ADMIN_USERNAME}
+            - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+            - ADMIN_EMAIL=${ADMIN_EMAIL}
+        depends_on:
+            - mariadb
+
+    mariadb:
+        image: mariadb
+        container_name: mariadb
+        restart: always
+        expose:
+          - "3306"
+        environment:
+          - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+          - MYSQL_DATABASE=${DB_DATABASE}
+          - MYSQL_USER=${DB_USERNAME}
+          - MYSQL_PASSWORD=${DB_PASSWORD}
+        volumes:
+          - /var/lib/mysql
