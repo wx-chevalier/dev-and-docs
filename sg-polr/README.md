@@ -1,27 +1,22 @@
-Polr on Alpine Linux with Docker
-==============================================
-![Docker Build Status](https://img.shields.io/docker/build/ajanvier/polr.svg)
-![Docker Image Size](https://img.shields.io/microbadger/image-size/ajanvier/polr.svg)
+# sg-polr
 
-A Docker image for [Polr](https://github.com/cydrobolt/polr).
+Polr on Alpine Linux with Docker, A Docker image for [Polr](https://github.com/cydrobolt/polr).
 
-Usage
------
-Start the Docker container:
+# Deploy
 
-    docker run -p 80:80 \
-        -e "DB_HOST=localhost" \
-        -e "DB_DATABASE=polr" \
-        -e "DB_USERNAME=polr" \
-        -e "DB_PASSWORD=password" \
-        -e "APP_ADDRESS=example.com" \
-        -e "ADMIN_USERNAME=admin" \
-        -e "ADMIN_PASSWORD=admin" \
-        ajanvier/polr
+```sh
+docker run -p 80:80 \
+    -e "DB_HOST=localhost" \
+    -e "DB_DATABASE=polr" \
+    -e "DB_USERNAME=polr" \
+    -e "DB_PASSWORD=password" \
+    -e "APP_ADDRESS=example.com" \
+    -e "ADMIN_USERNAME=admin" \
+    -e "ADMIN_PASSWORD=admin" \
+    ajanvier/polr
 
-Or use the example docker-compose.yml.
-
-SSL not included, I made it originally to work with nginx-proxy.
+# Or use the example docker-compose.yml. 
+```
 
 Environment variables
 -----
