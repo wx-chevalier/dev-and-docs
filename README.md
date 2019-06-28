@@ -1,3 +1,5 @@
+![](https://i.postimg.cc/Kz48qbwQ/image.png)
+
 # Soogle
 
 Soogle 是笔者构建自身搜索、外部服务访问能力的工具集合，[sg-index-\*](./sg-index-doc) 提供了将文档/图片建立索引使其可搜索的能力，[sg-ocr](./sg-ocr) 是桌面化图片内容提取的工具，[sg-server](./sg-server) 是提供独立部署的 Soogle 服务的服务端。
