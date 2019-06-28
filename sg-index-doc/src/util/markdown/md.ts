@@ -27,10 +27,7 @@ export function getH1sFromMDString(mdString: string) {
  * @return {string}
  */
 export const formatToc = (file: FileDescriptor) => {
-  return `- [${file.name.replace('.md', '')}](../${file.path.replace(
-    / /g,
-    '%20'
-  )}) \n`;
+  return `- [${file.name.replace('.md', '')}](../${file.path}) \n`;
 };
 
 /** 将  */
