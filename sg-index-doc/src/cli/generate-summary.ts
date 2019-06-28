@@ -15,12 +15,23 @@ program
 
 program.parse(process.argv);
 
-const targetDir = '/Users/apple/Workspace/Repos/Docs/ngte-docs';
+const targetDir = '/Users/apple/Workspace/Repos/NGTE/ngte-docs';
+
+const skippedRepos = [
+  'Awesome-Lists',
+  'Awesome-CheatSheets',
+  'Awesome-CS-Books-Warehouse'
+];
 
 (async () => {
   let summary = '# Summary \n';
 
   for (let repoName of Object.keys(repos)) {
+    if (skippedRepos.indexOf(repoName) > -1) {
+      console.log(repoName);
+      continue;
+    }
+
     const s = await generateSummary(repoName, targetDir);
 
     summary += s;

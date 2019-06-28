@@ -21,7 +21,9 @@ export const ignoreFilesOrDirs = [
   '.mindmap',
   'meta.yml',
   'ABOUT.md',
-  'ROADMAP.md'
+  'ROADMAP.md',
+  '.gitignore',
+  'meta.json'
 ];
 
 export const appendix = `

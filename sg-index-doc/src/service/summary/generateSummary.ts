@@ -4,11 +4,7 @@ const fs = require('fs-extra');
 const readFileAsync = promisify(fs.readFile);
 const debug = require('debug')('generateSummary');
 
-import {
-  generateFileTree,
-  generateTocFromFileTree,
-  generateTocFromFileTreeWithSubHeader
-} from '../../util/fs/file';
+import { generateFileTree, getBlankFromDepth } from '../../util/fs/file';
 import { ignoreFilesOrDirs } from './../../config/dict';
 import { FileTree } from './../../util/fs/interface';
 
@@ -80,9 +76,9 @@ function generatePartialSummary(
       `${repo.localPath}/${dir.path}README.md`,
       `${targetDir}/${repo.name}/${uniqueName}`
     ).catch(e => {
-      console.error(
-        `Invalie dir: ${repo.localPath}/${dir.path}README.md > ${e.path}`
-      );
+      // console.error(
+      //   `Invalie dir: ${repo.localPath}/${dir.path}README.md > ${e.path}`
+      // );
     });
 
     summary += `${getBlankFromDepth(currentDepth)}${formatFileAsListItem(
@@ -103,14 +99,4 @@ function generatePartialSummary(
   }
 
   return summary;
-}
-
-function getBlankFromDepth(depth: number) {
-  let str = '';
-
-  for (let i = 0; i < depth; i += 1) {
-    str += '  ';
-  }
-
-  return str;
 }
