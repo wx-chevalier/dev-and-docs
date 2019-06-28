@@ -22,7 +22,7 @@ export function getH1sFromMDString(mdString: string) {
 }
 
 /**
- * Description 格式化显示文件
+ * 格式化显示文件
  * @param {FileDescriptor} file
  * @return {string}
  */
@@ -31,6 +31,16 @@ export const formatToc = (file: FileDescriptor) => {
     / /g,
     '%20'
   )}): ${file.h1s[0] || ''} \n\n`;
+};
+
+/** 将  */
+export const formatFileAsListItem = (
+  file: FileDescriptor,
+  repoName: string
+) => {
+  return `- [${file.name.replace('.md', '')}](./${repoName}/${(
+    file.uniqueName || file.name
+  ).replace(/ /g, '%20')}) \n`;
 };
 
 export const extractInfoFromTitle = (title: string) => {

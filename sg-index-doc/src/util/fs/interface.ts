@@ -5,6 +5,7 @@ export interface FileDescriptor {
 
   // 文件名
   name: string;
+  uniqueName?: string;
 
   // 文件内容
   content?: string;
@@ -20,24 +21,9 @@ export interface FileDescriptor {
 }
 
 // 文件树
-/**
- * {
- *  files:[],
- *  dirName:{
- *    files:[
- *      {
- *        // 文件路径
- *        path:"...",
- *        fileName:"...",
- *        // 文件所有的一级标题
- *        h1s:["..."]
- *      }
- *    ],
- *    dirName:{...}
- *  }
- * }
- */
 export interface FileTree {
+  // 当前的文件目录
+  path: string;
   dirs: {
     [key: string]: FileTree;
   };

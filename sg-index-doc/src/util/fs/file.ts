@@ -1,6 +1,7 @@
 import { ignoreFilesOrDirs } from '../../config/dict';
 import { formatToc } from '../markdown/md';
 import { FileTree } from './interface';
+import { stringify } from 'querystring';
 
 const walkSync = require('walk-sync');
 const readline = require('readline');
@@ -16,6 +17,7 @@ const debug = require('debug')('file');
  */
 export async function generateFileTree(parentDirectory: string) {
   const fileTree: FileTree = {
+    path: '',
     dirs: {},
     files: []
   };
@@ -29,6 +31,10 @@ export async function generateFileTree(parentDirectory: string) {
 
     // 遍历每一段路径
     for (let segment of segments) {
+      if (segment.endsWith('.xmind') || segment.endsWith('.pdf')) {
+        continue;
+      }
+
       if (segment.endsWith('.md')) {
         // 这里的 segment 等价于文件名
         let h1s: string[] = await readMarkdownHeadersFromFile(
@@ -55,6 +61,7 @@ export async function generateFileTree(parentDirectory: string) {
         // 判断是否存在目录结点
         if (!obj['dirs'][segment]) {
           obj['dirs'][segment] = {
+            path,
             dirs: {},
             files: []
           };

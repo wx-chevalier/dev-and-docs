@@ -14,7 +14,14 @@ export const ignoreFilesOrDirs = [
   'README-en.md',
   'toc.md',
   'Template.md',
-  '.gitkeep'
+  '.gitkeep',
+  '.gitattributes',
+  '.gitbook.yaml',
+  '.meta',
+  '.mindmap',
+  'meta.yml',
+  'ABOUT.md',
+  'ROADMAP.md'
 ];
 
 export const appendix = `
