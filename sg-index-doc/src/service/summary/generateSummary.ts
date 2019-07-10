@@ -24,7 +24,7 @@ export async function generateSummary(repoName, targetDir) {
 
   const summary = generatePartialSummary(fileTree, 0, repo, targetDir);
 
-  return `## ${repo.name} | ${repo.title} \n` + summary;
+  return `## [${repo.name} | ${repo.title}]() \n` + summary;
 }
 
 /** 针对某层建立部门的 Summary */

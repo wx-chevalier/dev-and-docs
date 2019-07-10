@@ -131,7 +131,7 @@ export function generateTocFromFileTree(
     const dir = fileTree.dirs[dirName];
 
     if (currentDepth == 0) {
-      toc += `\n## ${dirName} \n\n`;
+      toc += `\n## [${dirName}](../${dirName}/README.md) \n\n- [Introduction](../${dirName}/README.md) \n\n`;
     } else {
       toc += `${getBlankFromDepth(currentDepth - 1)}${formatToc({
         name: dirName,
