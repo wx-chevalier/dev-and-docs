@@ -26,3 +26,10 @@ $ npm run ts ./src/cli/generate-summary.ts
 # 同步 Wiz 中的文章
 $ npm run ts ./src/cli/sync-wiz.ts
 ```
+
+- 数据统计
+
+```sh
+# 建立文章索引
+$ npm run ts ./src/cli/stats stats
+```
