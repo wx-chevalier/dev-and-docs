@@ -18,29 +18,33 @@ program.parse(process.argv);
 
 (async () => {
   for (let repoName of Object.keys(repos)) {
-    await fs.remove(`${repos[repoName].localPath}/.meta/SUMMARY.md`);
+    try {
+      await fs.remove(`${repos[repoName].localPath}/.meta/SUMMARY.md`);
 
-    await fs.remove(`${repos[repoName].localPath}/.gitbook.yaml`);
+      await fs.remove(`${repos[repoName].localPath}/.gitbook.yaml`);
 
-    let summary = '# Summary \n';
+      let summary = '# Summary \n';
 
-    const s = await generateToc(repoName);
+      const s = await generateToc(repoName);
 
-    summary += s;
+      summary += s;
 
-    await fs.outputFile(
-      `${repos[repoName].localPath}/.meta/SUMMARY.md`,
-      summary
-    );
+      await fs.outputFile(
+        `${repos[repoName].localPath}/.meta/SUMMARY.md`,
+        summary
+      );
 
-    await fs.outputFile(
-      `${repos[repoName].localPath}/.gitbook.yaml`,
-      `root: ./
+      await fs.outputFile(
+        `${repos[repoName].localPath}/.gitbook.yaml`,
+        `root: ./
 
 structure:
   readme: ./README.md
   summary: ./.meta/SUMMARY.md
 `
-    );
+      );
+    } catch (e) {
+      console.error(e);
+    }
   }
 })();

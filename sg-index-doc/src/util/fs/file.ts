@@ -36,15 +36,9 @@ export async function generateFileTree(parentDirectory: string) {
       }
 
       if (segment.endsWith('.md')) {
-        // 这里的 segment 等价于文件名
-        let h1s: string[] = await readMarkdownHeadersFromFile(
-          parentDirectory + '/' + path
-        );
-
         obj.files.push({
           path,
           name: segment,
-          h1s,
           html_url: `./${path}`
         });
       } else {
