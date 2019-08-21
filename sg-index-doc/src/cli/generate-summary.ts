@@ -20,7 +20,7 @@ const targetDir = '/Users/apple/Workspace/Repos/NGTE/ngte-docs';
 const skippedRepos = [
   'Awesome-Lists',
   'Awesome-CheatSheets',
-  'Awesome-CS-Books-Warehouse'
+  'Awesome-CS-Books'
 ];
 
 (async () => {

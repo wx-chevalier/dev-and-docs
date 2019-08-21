@@ -38,14 +38,14 @@ const repos: { [key: string]: ReposityConfig } = {
     localPath: `${baseLocalDir}/Awesome-Lists`
   },
 
-  'Awesome-CS-Books-Warehouse': {
+  'Awesome-CS-Books': {
     title: '藏书阁',
     description:
       ':books: Awesome CS Books/Series(.pdf by git lfs) Warehouse, ProgrammingLanguage, SoftwareEngineering, Web, AI, ServerSideApplication, Infrastructure, FE etc. :dizzy: 优秀计算机科学与技术领域相关的书籍归档',
-    sUrl: 'https://github.com/wxyyxc1992/Awesome-CS-Books-Warehouse',
+    sUrl: 'https://github.com/wxyyxc1992/Awesome-CS-Books',
     chapterHeader: 'https://parg.co/UGo',
     depth: 2,
-    localPath: `${baseLocalDir}/Awesome-CS-Books-Warehouse`
+    localPath: `${baseLocalDir}/Awesome-CS-Books`
   },
 
   'Awesome-CheatSheets': {
