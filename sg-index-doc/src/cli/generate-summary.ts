@@ -15,7 +15,7 @@ program
 
 program.parse(process.argv);
 
-const targetDir = '/Users/apple/Workspace/Repos/NGTE/ngte-docs';
+const targetDir = '/Users/apple/Workspace/Github/NGTE/ngte-docs';
 
 const skippedRepos = [
   'Awesome-Lists',

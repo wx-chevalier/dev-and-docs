@@ -24,7 +24,7 @@ export interface ReposityConfig {
   localPath?: string;
 }
 
-const baseLocalDir = '/Users/apple/Workspace/Repos/Docs';
+const baseLocalDir = '/Users/apple/Workspace/Github/Docs';
 
 // 所有仓库的声明
 const repos: { [key: string]: ReposityConfig } = {
