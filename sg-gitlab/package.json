@@ -1,0 +1,22 @@
+{
+  "name": "gitlab_backup_util",
+  "version": "1.0.0",
+  "description": "A small utility to backup or clone all projects you have on gitlab.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/itsTeknas/GitlabBackupUtil.git"
+  },
+  "author": "Sanket Berde",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "bluebird": "^3.5.3",
+    "lodash": "^4.17.11",
+    "node-cmd": "^3.0.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  }
+}
