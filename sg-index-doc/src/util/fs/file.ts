@@ -22,7 +22,9 @@ export async function generateFileTree(parentDirectory: string) {
     files: []
   };
 
-  const paths: string[] = walkSync(parentDirectory, { ignore: ['.git'] });
+  const paths: string[] = walkSync(parentDirectory, {
+    ignore: ['.git', '.github', '.meta']
+  });
 
   for (let path of paths) {
     let segments: string[] = path.split('/');

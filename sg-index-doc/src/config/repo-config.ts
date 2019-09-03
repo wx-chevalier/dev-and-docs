@@ -98,6 +98,16 @@ const repos: { [key: string]: ReposityConfig } = {
     localPath: `${baseLocalDir}/Backend-Series`
   },
 
+  'Spring-Series': {
+    title: 'Spring 实战',
+    description:
+      'Spring & Spring Boot & Spring Cloud & Alibaba Cloud 微服务与云原生实战',
+    sUrl: 'https://github.com/wxyyxc1992/Spring-Series',
+    chapterHeader: 'https://parg.co/U0y',
+    depth: 1,
+    localPath: `${baseLocalDir}/Spring-Series`
+  },
+
   'Distributed-Infrastructure-Series': {
     title: '分布式基础架构',
     description:

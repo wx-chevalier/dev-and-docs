@@ -43,6 +43,8 @@ structure:
   summary: ./.meta/SUMMARY.md
 `
       );
+
+      console.log(`${repoName} - FINISHED`);
     } catch (e) {
       console.error(e);
     }
