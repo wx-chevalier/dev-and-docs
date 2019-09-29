@@ -108,14 +108,14 @@ const repos: { [key: string]: ReposityConfig } = {
     localPath: `${baseLocalDir}/Spring-Series`
   },
 
-  'Distributed-Infrastructure-Series': {
+  'DistributedSystem-Series': {
     title: '分布式基础架构',
     description:
       ':books: 现代 Web 开发，现代 Web 开发导论 | 基础篇 | 进阶篇 | 架构优化篇 | React 篇 | Vue 篇',
-    sUrl: 'https://github.com/wxyyxc1992/Distributed-Infrastructure-Series',
+    sUrl: 'https://github.com/wxyyxc1992/DistributedSystem-Series',
     chapterHeader: 'https://parg.co/U0y',
     depth: 1,
-    localPath: `${baseLocalDir}/Distributed-Infrastructure-Series`
+    localPath: `${baseLocalDir}/DistributedSystem-Series`
   },
 
   'Frontend-Series': {
