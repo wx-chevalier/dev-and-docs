@@ -1,0 +1,832 @@
+{
+    "Clean Code Cheat Sheet": {
+        "Principles": {
+            "Loose Coupling": {
+                "text": "Two classes, components or modules are coupled when at least one of \nthem uses the other. The less these items know about each other, the \nlooser they are coupled. \n\nA component that is only loosely coupled to its environment can be more \neasily changed or replaced than a strongly coupled component. \n",
+                "type": "+"
+            },
+            "High Cohesion": {
+                "text": "Cohesion is the degree to which elements of a whole belong together. \nMethods and fields in a single class and classes of a component should have \nhigh cohesion. High cohesion in classes and components results in simpler, \nmore easily understandable code structure and design. \n",
+                "type": "+"
+            },
+            "Change is Local": {
+                "text": "When a software system has to be maintained, extended and changed for a \nlong time, keeping change local reduces involved costs and risks. Keeping \nchange local means that there are boundaries in the design which changes \ndo not cross. \n",
+                "type": "+"
+            },
+            "It is Easy to Remove": {
+                "text": "We normally build software by adding, extending or changing features. \nHowever, removing elements is important so that the overall design can be \nkept as simple as possible. When a block gets too complicated, it has to be \nremoved and replaced with one or more simpler blocks. \n",
+                "type": "+"
+            },
+            "Mind-sized Components": {
+                "text": "Break your system down into components that are of a size you can grasp \nwithin your mind so that you can predict consequences of changes easily \n(dependencies, control flow, ...). \n\n",
+                "type": "+"
+            }
+        },
+        "Smells": {
+            "Rigidity": {
+                "text": "The software is difficult to change. A small change causes a cascade of \nsubsequent changes. \n",
+                "type": "-"
+            },
+            "Fragility": {
+                "text": "The software breaks in many places due to a single change. \n",
+                "type": "-"
+            },
+            "Immobility": {
+                "text": "You cannot reuse parts of the code in other projects because of involved \nrisks and high effort. \n",
+                "type": "-"
+            },
+            "Viscosity of Design": {
+                "text": "Taking a shortcut and introducing technical debt requires less effort than \ndoing it right. \n",
+                "type": "-"
+            },
+            "Viscosity of Environment": {
+                "text": "Building, testing and other tasks take a long time. Therefore, these activities \nare not executed properly by everyone and technical debt is introduced. \n",
+                "type": "-"
+            },
+            "Needless Complexity": {
+                "text": "The design contains elements that are currently not useful. The added \ncomplexity makes the code harder to comprehend. Therefore, extending \nand changing the code results in higher effort than necessary. \n",
+                "type": "-"
+            },
+            "Needless Repetition": {
+                "text": "Code contains exact code duplications or design duplicates (doing the same \nthing in a different way). Making a change to a duplicated piece of code is \nmore expensive and more error-prone because the change has to be made \nin several places with the risk that one place is not changed accordingly. \n",
+                "type": "-"
+            },
+            "Opacity": {
+                "text": "The code is hard to understand. Therefore, any change takes additional time \nto first reengineer the code and is more likely to result in defects due to not \nunderstanding the side effects. \n\n",
+                "type": "-"
+            }
+        },
+        "Class Design": {
+            "Single Responsibility Principle (SRP)": {
+                "text": "A class should have one, and only one, reason to change. \n",
+                "type": "+"
+            },
+            "Open Closed Principle (OCP)": {
+                "text": "You should be able to extend a classes behaviour without modifying it. \n",
+                "type": "+"
+            },
+            "Liskov Substitution Principle (LSP)": {
+                "text": "Derived classes must be substitutable for their base classes. \n",
+                "type": "+"
+            },
+            "Dependency Inversion Principle (DIP)": {
+                "text": "Depend on abstractions, not on concretions. \n",
+                "type": "+"
+            },
+            "Interface Segregation Principle (ISP)": {
+                "text": "Make fine grained interfaces that are client-specific. \n",
+                "type": "+"
+            },
+            "Classes Should be Small": {
+                "text": "Smaller classes are easier to grasp. Classes should be smaller than about \n100 lines of code. Otherwise, it is hard to spot how the class does its job and \nit probably does more than a single job. \n",
+                "type": "+"
+            },
+            "Do stuff or know others, but not both": {
+                "text": "Classes should either do stuff (algorithm, read data, write data, ...) or \norchestrate other classes. This reduces coupling and simplifies testing. \n\n",
+                "type": "+"
+            }
+        },
+        "Package Cohesion": {
+            "Release Reuse Equivalency Principle (RREP)": {
+                "text": "The granule of reuse is the granule of release. \n",
+                "type": "+"
+            },
+            "Common Closure Principle (CCP)": {
+                "text": "Classes that change together are packaged together. \n",
+                "type": "+"
+            },
+            "Common Reuse Principle (CRP)": {
+                "text": "Classes that are used together are packaged together. \n\n",
+                "type": "+"
+            }
+        },
+        "Package Coupling": {
+            "Acyclic Dependencies Principle (ADP)": {
+                "text": "The dependency graph of packages must have no cycles. \n",
+                "type": "+"
+            },
+            "Stable Dependencies Principle (SDP)": {
+                "text": "Depend in the direction of stability. \n\n",
+                "type": "+"
+            },
+            "Stable Abstractions Principle (SAP)": {
+                "text": "Abstractness increases with stability \n\n",
+                "type": "-"
+            }
+        },
+        "General": {
+            "Follow Standard Conventions": {
+                "text": "Coding-, architecture-, design guidelines (check them with tools) \n",
+                "type": "+"
+            },
+            "Keep it Simple, Stupid (KISS)": {
+                "text": "Simpler is always better. Reduce complexity as much as possible. \n",
+                "type": "+"
+            },
+            "Boy Scout Rule": {
+                "text": "Leave the campground cleaner than you found it. \n",
+                "type": "+"
+            },
+            "Root Cause Analysis": {
+                "text": "Always look for the root cause of a problem. Otherwise, it will get you again.  \n",
+                "type": "+"
+            },
+            "Multiple Languages in One Source File": {
+                "text": "C#, Java, JavaScript, XML, HTML, XAML, English, German ... \n\n",
+                "type": "-"
+            }
+        },
+        "Environment": {
+            "Project Build Requires Only One Step": {
+                "text": "Check out and then build with a single command. \n",
+                "type": "+"
+            },
+            "Executing Tests Requires Only One Step": {
+                "text": "Run all unit tests with a single command. \n",
+                "type": "+"
+            },
+            "Source Control System": {
+                "text": "Always use a source control system. \n",
+                "type": "+"
+            },
+            "Continuous Integration": {
+                "text": "Assure integrity with Continuous Integration \n",
+                "type": "+"
+            },
+            "Overridden Safeties": {
+                "text": "Do not override warnings, errors, exception handling - they will catch you. \n\n",
+                "type": "-"
+            }
+        },
+        "Dependency Injection": {
+            "Decouple Construction from Runtime": {
+                "text": "Decoupling the construction phase completely from the runtime helps to \nsimplify the runtime behaviour. \n\n",
+                "type": "+"
+            }
+        },
+        "Design": {
+            "Keep Configurable Data at High Levels": {
+                "text": "If you have a constant such as default or configuration value that is known \nand expected at a high level of abstraction, do not bury it in a low-level \nfunction. Expose it as an argument to the low-level function called from the \nhigh-level function. \n",
+                "type": "+"
+            },
+            "Don't Be Arbitrary": {
+                "text": "Have a reason for the way you structure your code, and make sure that \nreason is communicated by the structure of the code. If a structure appears \narbitrary, others will feel empowered to change it. \n",
+                "type": "+"
+            },
+            "Be Precise": {
+                "text": "When you make a decision in your code, make sure you make it precisely. \nKnow why you have made it and how you will deal with any exceptions. \n",
+                "type": "+"
+            },
+            "Structure over Convention": {
+                "text": "Enforce design decisions with structure over convention. Naming \nconventions are good, but they are inferior to structures that force \ncompliance. \n",
+                "type": "+"
+            },
+            "Prefer Polymorphism To If/Else or Switch/Case": {
+                "text": "\"ONE SWITCH\": There may be no more than one switch statement for a \ngiven type of selection. The cases in that switch statement must create \npolymorphic objects that take the place of other such switch statements in \nthe rest of the system. \n",
+                "type": "+"
+            },
+            "Symmetry / Analogy": {
+                "text": "Favour symmetric designs (e.g. Load - Save) and designs that follow \nanalogies (e.g. same design as found in .NET framework). \n",
+                "type": "+"
+            },
+            "Separate Multi-Threading Code": {
+                "text": "Do not mix code that handles multi-threading aspects with the rest of the \ncode. Separate them into different classes. \n",
+                "type": "+"
+            },
+            "Misplaced Responsibility": {
+                "text": "Something put in the wrong place. \n\n",
+                "type": "-"
+            },
+            "Code at Wrong Level of Abstraction": {
+                "text": "Functionality is at wrong level of abstraction, e.g. a PercentageFull property \non a generic IStack<T>. \n",
+                "type": "-"
+            },
+            "Fields Not Defining State": {
+                "text": "Fields holding data that does not belong to the state of the instance but are \nused to hold temporary data. Use local variables or extract to a class \nabstracting the performed action. \n",
+                "type": "-"
+            },
+            "Over Configurability": {
+                "text": "Prevent configuration just for the sake of it - or because nobody can decide \nhow it should be. Otherwise, this will result in overly complex, unstable \nsystems. \n",
+                "type": "-"
+            },
+            "Micro Layers": {
+                "text": "Do not add functionality on top, but simplify overall. \n\n",
+                "type": "-"
+            }
+        },
+        "Dependencies": {
+            "Make Logical Dependencies Physical": {
+                "text": "If one module depends upon another, that dependency should be physical, \nnot just logical. Don't make assumptions. \n",
+                "type": "+"
+            },
+            "Singletons / Service Locator": {
+                "text": "Use dependency injection. Singletons hide dependencies. \n",
+                "type": "-"
+            },
+            "Base Classes Depending On Their Derivatives": {
+                "text": "Base classes should work with any derived class. \n",
+                "type": "-"
+            },
+            "Too Much Information": {
+                "text": "Minimise interface to minimise coupling \n",
+                "type": "-"
+            },
+            "Feature Envy": {
+                "text": "The methods of a class should be interested in the variables and functions \nof the class they belong to, and not the variables and functions of other \nclasses. Using accessors and mutators of some other object to manipulate \nits data, is envying the scope of the other object. \n",
+                "type": "-"
+            },
+            "Artificial Coupling": {
+                "text": "Things that don't depend upon each other should not be artificially coupled. \n",
+                "type": "-"
+            },
+            "Hidden Temporal Coupling": {
+                "text": "If, for example, the order of some method calls is important, then make \nsure that they cannot be called in the wrong order. \n",
+                "type": "-"
+            },
+            "Transitive Navigation": {
+                "text": "Aka Law of Demeter, writing shy code. \nA module should know only its direct dependencies. \n\n",
+                "type": "-"
+            }
+        },
+        "Naming": {
+            "Choose Descriptive / Unambiguous Names": {
+                "text": "Names have to reflect what a variable, field, property stands for. Names \nhave to be precise. \n",
+                "type": "+"
+            },
+            "Choose Names at Appropriate Level of Abstraction": {
+                "text": "Choose names that reflect the level of abstraction of the class or method \nyou are working in. \n",
+                "type": "+"
+            },
+            "Name Interfaces After Functionality They Abstract": {
+                "text": "The name of an interface should be derived from its usage by the client. \n",
+                "type": "+"
+            },
+            "Name Classes After How They Implement Interfaces": {
+                "text": "The name of a class should reflect how it fulfils the functionality provided by \nits interface(s), such as MemoryStream : IStream  \n",
+                "type": "+"
+            },
+            "Name Methods After What They Do": {
+                "text": "The name of a method should describe what is done, not how it is done. \n",
+                "type": "+"
+            },
+            "Use Long Names for Long Scopes": {
+                "text": "fields ->parameters ->locals ->loop variables \nlong                                   ->\tshort \n",
+                "type": "+"
+            },
+            "Names Describe Side Effects": {
+                "text": "Names have to reflect the entire functionality. \n",
+                "type": "+"
+            },
+            "Standard Nomenclature Where Possible": {
+                "text": "Don't invent your own language when there is a standard. \n",
+                "type": "+"
+            },
+            "Encodings in Names": {
+                "text": "No prefixes, no type/scope information \n\n \n",
+                "type": "-"
+            }
+        },
+        "Understandability": {
+            "Consistency": {
+                "text": "If you do something a certain way, do all similar things in the same way: \nsame variable name for same concepts, same naming pattern for \ncorresponding concepts. \n",
+                "type": "+"
+            },
+            "Use Explanatory Variables": {
+                "text": "Use locals to give steps in algorithms names. \n",
+                "type": "+"
+            },
+            "Encapsulate Boundary Conditions": {
+                "text": "Boundary conditions are hard to keep track of. Put the processing for them \nin one place, e.g. nextLevel = level + 1; \n",
+                "type": "+"
+            },
+            "Prefer Dedicated Value Objects to Primitive Types": {
+                "text": "Instead of passing primitive types like strings and integers, use dedicated \nprimitive types: e.g. AbsolutePath instead of string. \n",
+                "type": "+"
+            },
+            "Poorly Written Comment": {
+                "text": "Comment does not add any value (redundant to code), is not well formed, \nnot correct grammar/spelling. \n",
+                "type": "-"
+            },
+            "Obscured Intent": {
+                "text": "Too dense algorithms that lose all expressiveness. \n",
+                "type": "-"
+            },
+            "Obvious Behaviour Is Unimplemented": {
+                "text": "Violations of \"the Principle of Least Astonishment\". What you expect is \nwhat you get. \n",
+                "type": "-"
+            },
+            "Hidden Logical Dependency": {
+                "text": "A method can only work when invoked correctly depending on something \nelse in the same class, e.g. a DeleteItem method must only be called if a \nCanDeleteItem method returned true, otherwise it will fail. \n\n",
+                "type": "-"
+            }
+        },
+        "Methods": {
+            "Methods Should Do One Thing": {
+                "text": "Loops, exception handling, ... encapsulate in sub-methods. \n",
+                "type": "+"
+            },
+            "Methods Should Descend 1 Level of Abstraction": {
+                "text": "The statements within a method should all be written at the same level of \nabstraction, which should be one level below the operation described by \nthe name of the function. \n",
+                "type": "+"
+            },
+            "Method with Too Many Arguments": {
+                "text": "Prefer fewer arguments. Maybe functionality can be outsourced to a \ndedicated class that holds the information in fields. \n",
+                "type": "-"
+            },
+            "Method with Out/Ref Arguments": {
+                "text": "Prevent usage. Return complex object holding all values, split into several \nmethods. If your method must change the state of something, have it \nchange the state of the object it is called on. \n",
+                "type": "-"
+            },
+            "Selector / Flag Arguments": {
+                "text": "public int Foo(bool flag) \nSplit method into several independent methods that can be called from the \nclient without the flag. \n",
+                "type": "-"
+            },
+            "Inappropriate Static": {
+                "text": "Static method that should be an instance method \n\n",
+                "type": "-"
+            }
+        },
+        "Source Code Structure": {
+            "Vertical Separation": {
+                "text": "Variables and methods should be defined close to where they are used. \nLocal variables should be declared just above their first usage and should \nhave a small vertical scope. \n",
+                "type": "+"
+            },
+            "Nesting": {
+                "text": "Nested code should be more specific or handle less probable scenarios than \nunnested code. \n",
+                "type": "+"
+            },
+            "Structure Code into Namespaces by Feature": {
+                "text": "Keep everything belonging to the same feature together. Don't use \nnamespaces communicating layers. A feature may use another feature; a \nbusiness feature may use a core feature like logging. \n\n",
+                "type": "+"
+            }
+        },
+        "Conditionals": {
+            "Encapsulate Conditionals": {
+                "text": "if (this.ShouldBeDeleted(timer)) is preferable to if (timer.HasExpired && \n!timer.IsRecurrent). \n",
+                "type": "+"
+            },
+            "Positive Conditionals": {
+                "text": "Positive conditionals are easier to read than negative conditionals. \n\n",
+                "type": "+"
+            }
+        },
+        "Useless Stuff": {
+            "Dead Comment, Code": {
+                "text": "Delete unused things. You can find them in your version control system. \n",
+                "type": "-"
+            },
+            "Clutter": {
+                "text": "Code that is not dead but does not add any functionality \n",
+                "type": "-"
+            },
+            "Inappropriate Information": {
+                "text": "Comment holding information better held in a different system: product \nbacklog, source control. Use code comments for technical notes only. \n\n",
+                "type": "-"
+            }
+        },
+        "Maintainability Killers": {
+            "Duplication": {
+                "text": "Eliminate duplication. Violation of the \"Don't repeat yourself\" (DRY) \nprinciple. \n",
+                "type": "-"
+            },
+            "Magic Numbers / Strings": {
+                "text": "Replace Magic Numbers and Strings with named constants to give them a \nmeaningful name when meaning cannot be derived from the value itself. \n",
+                "type": "-"
+            },
+            "Enums (Persistent or Defining Behaviour)": {
+                "text": "Use reference codes instead of enums if they have to be persisted. Use \npolymorphism instead of enums if they define behaviour. \n",
+                "type": "-"
+            },
+            "Tangles": {
+                "text": "The class dependencies should not be tangled. There should be no cyclic \ndependency chains. In a cycle there is no point to start changing the code \nwithout side-effects. \n\n",
+                "type": "-"
+            }
+        },
+        "Exception Handling": {
+            "Catch Specific Exceptions": {
+                "text": "Catch exceptions as specific as possible. Catch only the exceptions for which \nyou can react in a meaningful manner. \n",
+                "type": "+"
+            },
+            "Catch Where You Can React in a Meaningful Way": {
+                "text": "Only catch exceptions when you can react in a meaningful way. Otherwise, \nlet someone up in the call stack react to it. \n",
+                "type": "+"
+            },
+            "Use Exceptions instead of Return Codes or null": {
+                "text": "In an exceptional case, throw an exception when your method cannot do its \njob. Don't accept or return null. Don't return error codes. \n",
+                "type": "+"
+            },
+            "Fail Fast": {
+                "text": "Exceptions should be thrown as early as possible after detecting an \nexceptional case. This helps to pinpoint the exact location of the problem by \nlooking at the stack trace of the exception. \n",
+                "type": "+"
+            },
+            "Using Exceptions for Control Flow": {
+                "text": "Using exceptions for control flow: has bad performance, is hard to \nunderstand and results in very hard handling of real exceptional cases. \n",
+                "type": "-"
+            },
+            "Swallowing Exceptions": {
+                "text": "Exceptions can be swallowed only if the exceptional case is completely \nresolved after leaving the catch block. Otherwise, the system is left in an \ninconsistent state. \n\n \n \n\n",
+                "type": "-"
+            }
+        },
+        "How to Learn Clean Code": {
+            "Pair Programming": {
+                "text": "Two developers solving a problem together at a single workstation. One is \nthe driver, the other is the navigator. The driver is responsible for writing \nthe code. The navigator is responsible for keeping the solution aligned with \nthe architecture, the coding guidelines and looks at where to go next (e.g. \nwhich test to write next). Both challenge their ideas and approaches to \nsolutions. \n",
+                "type": "+"
+            },
+            "Commit Reviews": {
+                "text": "A developer walks a peer developer through all code changes prior to \ncommitting (or pushing) the changes to the version control system. The \npeer developer checks the code against clean code guidelines and design \nguidelines. \n",
+                "type": "+"
+            },
+            "Coding Dojo": {
+                "text": "In a Coding Dojo, a group of developers come together to exercise their \nskills. Two developers solve a problem (kata) in pair programming. The rest \nobserve. After 10 minutes, the group rotates to build a new pair. The \nobservers may critique the current solution, but only when all tests are \ngreen. \n\nBibliography \nClean Code: A Handbook of Agile Software Craftsmanship by Robert Martin \n\n",
+                "type": "+"
+            }
+        },
+        "Refactoring Patterns": {
+            "Reconcile Differences - Unify Similar Code": {
+                "text": "Change both pieces of code stepwise until they are identical. Then extract. \n",
+                "type": "+"
+            },
+            "Isolate Change": {
+                "text": "First, isolate the code to be refactored from the rest. Then refactor. Finally, \nundo isolation. \n",
+                "type": "+"
+            },
+            "Migrate Data": {
+                "text": "Move from one representation to another by temporary duplication of data \nstructures. \n",
+                "type": "+"
+            },
+            "Temporary Parallel Implementation": {
+                "text": "Refactor by introducing a temporary parallel implementation of an \nalgorithm. Switch one caller after the other. Remove old solution when no \nlonger needed. This way you can refactor with only one red test at a time. \n",
+                "type": "+"
+            },
+            "Demilitarized Zone for Components": {
+                "text": "Introduce an internal component boundary and push everything unwanted \noutside of the internal boundary into the demilitarized zone between \ncomponent interface and internal boundary. Then refactor the component \ninterface to match the internal boundary and eliminate the demilitarized \nzone. \n",
+                "type": "+"
+            },
+            "Refactor before adding Functionality": {
+                "text": "Refactor the existing code before adding new functionality in a way so that \nthe change can easily be made. \n",
+                "type": "+"
+            },
+            "Small Refactorings": {
+                "text": "Only refactor in small steps with working code in-between so that you can \nkeep all loose ends in your head. Otherwise, defects sneak in. \n\nDO \nDON'T \n\n\n \n",
+                "type": "+"
+            }
+        }
+    },
+    "Clean ATDD/TDD Cheat Sheet": {
+        "Kinds of Automated Tests": {
+            "ATDD - Acceptance Test Driven Development": {
+                "text": "Specify a feature first with a test, then implement. \n",
+                "type": "+"
+            },
+            "TDD - Test Driven Development": {
+                "text": "Red - green - refactor. Test a little - code a little. \n",
+                "type": "+"
+            },
+            "DDT - Defect Driven Testing": {
+                "text": "Write a unit test that reproduces the defect - Fix code - Test will succeed Defect will never return. \n",
+                "type": "+"
+            },
+            "POUTing - Plain Old Unit Testing": {
+                "text": "Aka test after. Write unit tests to check existing code. You cannot and \nprobably do not want to test drive everything. Use POUT to increase sanity. \n\nUse to add additional tests after TDDing (e.g. boundary cases). \n",
+                "type": "+"
+            }
+        },
+        "Design for Testability": {
+            "Constructor - Simplicity": {
+                "text": "Objects have to be easily creatable. Otherwise, easy and fast testing is not \npossible. \n",
+                "type": "+"
+            },
+            "Constructor - Lifetime": {
+                "text": "Pass dependencies and configuration/parameters into the constructor that \nhave a lifetime equal to or longer than the created object. For other values \n\nuse methods or properties. \n",
+                "type": "+"
+            },
+            "Abstraction Layers at System Boundary": {
+                "text": "Use abstraction layers at system boundaries (database, file system, web \nservices, ...) that simplify unit testing by enabling the usage of fakes. \n",
+                "type": "+"
+            }
+        },
+        "Structure": {
+            "Arrange - Act - Assert": {
+                "text": "Structure the tests always by AAA. Never mix these three blocks. \n",
+                "type": "+"
+            },
+            "Test Assemblies (.Net)": {
+                "text": "Create a test assembly for each production assembly and name it as the \nproduction assembly + \".Test\"/\".Facts\"/... . \n",
+                "type": "+"
+            },
+            "Test Namespace": {
+                "text": "Put the tests in the same namespace as their associated testee. \n",
+                "type": "+"
+            },
+            "Unit Test Methods Show Whole Truth": {
+                "text": "Unit test methods show all parts needed for the test. Do not use SetUp \nmethod or base classes to perform actions on testee or dependencies. \n",
+                "type": "+"
+            },
+            "SetUp / TearDown for Infrastructure Only": {
+                "text": "Use the SetUp / TearDown methods only for infrastructure that your unit \ntest needs. Do not use it for anything that is under test. \n",
+                "type": "+"
+            },
+            "Test Method Naming": {
+                "text": "Use a pattern that reflects behaviour of tested code, e.g. \nBehaviour[_OnTrigger][_WhenScenario] with [] as optional parts. \n",
+                "type": "+"
+            },
+            "Resource Files": {
+                "text": "Test and resource are together: FooTest.cs, FooTest.resx \n\n",
+                "type": "+"
+            }
+        },
+        "Naming": {
+            "Naming SUT Test Variables": {
+                "text": "Give the variable holding the System Under Test always the same name (e.g. \ntestee or sut). Clearly identifies the SUT, robust against refactoring. \n",
+                "type": "+"
+            },
+            "Naming Result Values": {
+                "text": "Give the variable holding the result of the tested method always the same \nname (e.g. result). \n",
+                "type": "+"
+            },
+            "Anonymous Variables": {
+                "text": "Always use the same name for variables holding uninteresting arguments to \ntested methods (e.g. anonymousText, anyText). \n\n",
+                "type": "+"
+            }
+        },
+        "Don't Assume": {
+            "Understand the Algorithm": {
+                "text": "Just working is not enough, make sure you understand why it works. \n",
+                "type": "+"
+            },
+            "Incorrect Behaviour at Boundaries": {
+                "text": "Always unit test boundaries. Do not assume behaviour. \n\n",
+                "type": "-"
+            }
+        },
+        "Faking (Stubs, Fakes, Spies, Mocks, Test Doubles ...)": {
+            "Isolation from environment": {
+                "text": "Use fakes to simulate all dependencies of the testee. \n",
+                "type": "+"
+            },
+            "Faking Framework": {
+                "text": "Use a dynamic fake framework for fakes that show different behaviour in \ndifferent test scenarios (little behaviour reuse). \n",
+                "type": "+"
+            },
+            "Manually Written Fakes": {
+                "text": "Use manually written fakes when they can be used in several tests and they \nhave only little changed behaviour in these scenarios (behaviour reuse). \n",
+                "type": "+"
+            },
+            "Mixing Stubbing and Expectation Declaration": {
+                "text": "Make sure that you follow the AAA (arrange, act, assert) syntax when using \nfakes. Don't mix setting up stubs (so that the testee can run) with \nexpectations (on what the testee should do) in the same code block. \n",
+                "type": "-"
+            },
+            "Checking Fakes instead of Testee": {
+                "text": "Tests that do not check the testee but values returned by fakes. Normally \ndue to excessive fake usage. \n",
+                "type": "-"
+            },
+            "Excessive Fake Usage": {
+                "text": "If your test needs a lot of fakes or fake setup, then consider splitting the \ntestee into several classes or provide an additional abstraction between \nyour testee and its dependencies. \n\n",
+                "type": "-"
+            }
+        },
+        "Unit Test Principles": {
+            "Fast": {
+                "text": "Unit tests have to be fast in order to be executed often. Fast means much \nsmaller than seconds. \n",
+                "type": "+"
+            },
+            "Isolated": {
+                "text": "Isolated testee: Clear where the failure happened.  \nIsolated test: No dependency between tests (random order). \n",
+                "type": "+"
+            },
+            "Repeatable": {
+                "text": "No assumed initial state, nothing left behind, no dependency on external \nservices that might be unavailable (databases, file system ...). \n",
+                "type": "+"
+            },
+            "Self-Validating": {
+                "text": "No manual test interpretation or intervention. Red or green! \n",
+                "type": "+"
+            },
+            "Timely": {
+                "text": "Tests are written at the right time (TDD, DDT, POUTing) \n\n",
+                "type": "+"
+            }
+        },
+        "Unit Test Smells": {
+            "Test Not Testing Anything": {
+                "text": "Passing test that at first sight appears valid but does not test the testee. \n",
+                "type": "-"
+            },
+            "Test Needing Excessive Setup": {
+                "text": "A test that needs dozens of lines of code to set up its environment. This \nnoise makes it difficult to see what is really tested. \n",
+                "type": "-"
+            },
+            "Too Large Test / Assertions for Multiple Scenarios": {
+                "text": "A valid test that is, however, too large. Reasons can be that this test checks \nfor more than one feature or the testee does more than one thing (violation \nof Single Responsibility Principle). \n",
+                "type": "+"
+            },
+            "Checking Internals": {
+                "text": "A test that accesses internals (private/protected members) of the testee \ndirectly (Reflection). This is a refactoring killer. \n",
+                "type": "-"
+            },
+            "Test Only Running on Developer's Machine": {
+                "text": "A test that is dependent on the development environment and fails \nelsewhere. Use continuous integration to catch them as soon as possible. \n",
+                "type": "-"
+            },
+            "Test Checking More than Necessary": {
+                "text": "A test that checks more than it is dedicated to. The test fails whenever \nsomething changes that it checks unnecessarily. Especially probable when \nfakes are involved or checking for item order in unordered collections.  \n",
+                "type": "-"
+            },
+            "Irrelevant Information": {
+                "text": "Test contains information that is not relevant to understand it. \n",
+                "type": "-"
+            },
+            "Chatty Test": {
+                "text": "A test that fills the console with text - probably used once to manually \ncheck for something. \n",
+                "type": "-"
+            },
+            "Test Swallowing Exceptions": {
+                "text": "A test that catches exceptions and lets the test pass. \n\n",
+                "type": "-"
+            },
+            "Test Not Belonging in Host Test Fixture": {
+                "text": "A test that tests a completely different testee than all other tests in the \nfixture. \n",
+                "type": "-"
+            },
+            "Obsolete Test": {
+                "text": "A test that checks something no longer required in the system. May even \nprevent clean-up of production code because it is still referenced. \n",
+                "type": "-"
+            },
+            "Hidden Test Functionality": {
+                "text": "Test functionality hidden in either the SetUp method, base class or helper \nclass. The test should be clear by looking at the test method only - no \ninitialisation or asserts somewhere else. \n",
+                "type": "-"
+            },
+            "Bloated Construction": {
+                "text": "The construction of dependencies and arguments used in calls to testee \nmakes test hardly readable. Extract to helper methods that can be reused.  \n",
+                "type": "-"
+            },
+            "Unclear Fail Reason": {
+                "text": "Split test or use assertion messages. \n",
+                "type": "-"
+            },
+            "Conditional Test Logic": {
+                "text": "Tests should not have any conditional test logic because it's hard to read. \n",
+                "type": "-"
+            },
+            "Test Logic in Production Code": {
+                "text": "Tests depend on special logic in production code. \n",
+                "type": "-"
+            },
+            "Erratic Test": {
+                "text": "Sometimes passes, sometimes fails due to left overs or environment. \n\n",
+                "type": "-"
+            }
+        },
+        "TDD Principles": {
+            "A Test Checks One Feature": {
+                "text": "A test checks exactly one feature of the testee. That means that it tests all \nthings included in this feature but not more. This includes probably more \nthan one call to the testee. This way, the tests serve as samples and \ndocumentation of the usage of the testee. \n",
+                "type": "+"
+            },
+            "Tiny Steps": {
+                "text": "Make tiny little steps. Add only a little code in test before writing the \nrequired production code. Then repeat. Add only one Assert per step. \n",
+                "type": "+"
+            },
+            "Keep Tests Simple": {
+                "text": "Whenever a test gets complicated, check whether you can split the testee \ninto several classes (Single Responsibility Principle) \n",
+                "type": "+"
+            },
+            "Prefer State Verification to Behaviour Verification": {
+                "text": "Use behaviour verification only if there is no state to verify. Refactoring is \neasier due to less coupling to implementation. \n",
+                "type": "+"
+            },
+            "Test Domain Specific Language": {
+                "text": "Use test DSLs to simplify reading tests: builders to create test data using \nfluent APIs, assertion helpers for concise assertions. \n\n",
+                "type": "+"
+            }
+        },
+        "TDD Process Smells": {
+            "Using Code Coverage as a Goal": {
+                "text": "Use code coverage to find missing tests but don't use it as a driving tool. \nOtherwise, the result could be tests that increase code coverage but not \ncertainty. \n",
+                "type": "-"
+            },
+            "No Green Bar in the last ~10 Minutes": {
+                "text": "Make small steps to get feedback as fast and frequent as possible. \n",
+                "type": "-"
+            },
+            "Not Running Test Before Writing Production Code": {
+                "text": "Only if the test fails, then new code is required. Additionally, if the test \nsurprisingly does not fail then make sure the test is correct. \n",
+                "type": "-"
+            },
+            "Not Spending Enough Time on Refactoring": {
+                "text": "Refactoring is an investment in the future. Readability, changeability and \nextensibility will pay back. \n",
+                "type": "-"
+            },
+            "Skipping Something Too Easy to Test": {
+                "text": "Don't assume, check it. If it is easy, then the test is even easier. \n",
+                "type": "-"
+            },
+            "Skipping Something Too Hard to Test": {
+                "text": "Make it simpler, otherwise bugs will hide in there and maintainability will \nsuffer. \n",
+                "type": "-"
+            },
+            "Organising Tests around Methods, Not Behaviour": {
+                "text": "These tests are brittle and refactoring killers. Test complete \"mini\" use \ncases in a way which reflects how the feature will be used in the real world. \n\nDo not test setters and getters in isolation, test the scenario they are used \nin. \n\n",
+                "type": "-"
+            }
+        },
+        "Red Bar Patterns": {
+            "One Step Test": {
+                "text": "Pick a test you are confident you can implement and which maximises \nlearning effect (e.g. impact on design). \n",
+                "type": "+"
+            },
+            "Partial Test": {
+                "text": "Write a test that does not fully check the required behaviour, but brings you \na step closer to it. Then use Extend Test below. \n",
+                "type": "+"
+            },
+            "Extend Test": {
+                "text": "Extend an existing test to better match real-world scenarios. \n",
+                "type": "+"
+            },
+            "Another Test": {
+                "text": "If you think of new tests, then write them on the TO DO list and don't lose \nfocus on current test.  \n",
+                "type": "+"
+            },
+            "Learning Test": {
+                "text": "Write tests against external components to make sure they behave as \nexpected. \n\n",
+                "type": "+"
+            }
+        },
+        "Green Bar Patterns": {
+            "Fake It ('Til You Make It)": {
+                "text": "Return a constant to get first test running. Refactor later. \n",
+                "type": "+"
+            },
+            "Triangulate - Drive Abstraction": {
+                "text": "Write test with at least two sets of sample data. Abstract implementation \non these. \n",
+                "type": "+"
+            },
+            "Obvious Implementation": {
+                "text": "If the implementation is obvious then just implement it and see if test runs. \nIf not, then step back and just get test running and refactor then. \n",
+                "type": "+"
+            },
+            "One to Many - Drive Collection Operations": {
+                "text": "First, implement operation for a single element. Then, step to several \nelements (and no element). \n\n",
+                "type": "+"
+            }
+        },
+        "Acceptance Test Driven Development": {
+            "Use Acceptance Tests to Drive Your TDD tests": {
+                "text": "Acceptance tests check for the required functionality. Let them guide your \nTDD. \n",
+                "type": "+"
+            },
+            "User Feature Test": {
+                "text": "An acceptance test is a test for a complete user feature from top to bottom \nthat provides business value. \n",
+                "type": "+"
+            },
+            "Automated ATDD": {
+                "text": "Use automated Acceptance Test Driven Development for regression testing \nand executable specifications. \n",
+                "type": "+"
+            },
+            "Component Acceptance Tests": {
+                "text": "Write acceptance tests for individual components or subsystems so that \nthese parts can be combined freely without losing test coverage. \n",
+                "type": "+"
+            },
+            "Simulate System Boundaries": {
+                "text": "Simulate system boundaries like the user interface, databases, file system \nand external services to speed up your acceptance tests and to be able to \ncheck exceptional cases (e.g. a full hard disk). Use system tests to check the \nboundaries. \n",
+                "type": "+"
+            },
+            "Acceptance Test Spree": {
+                "text": "Do not write acceptance tests for every possibility. Write acceptance tests \nonly for real scenarios. The exceptional and theoretical cases can be \ncovered more easily with unit tests.  \n\nDO \nDON'T \n\n\n \n",
+                "type": "-"
+            }
+        },
+        "Continuous Integration": {
+            "Pre-Commit Check": {
+                "text": "Run all unit and acceptance tests covering currently worked on code prior to \ncommitting to the source code repository. \n",
+                "type": "+"
+            },
+            "Post-Commit Check": {
+                "text": "Run all unit and acceptance tests on every commit to the version control \nsystem on the continuous integration server. \n",
+                "type": "+"
+            },
+            "Communicate Failed Integration to Whole Team": {
+                "text": "Whenever a stage on the continuous integration server fails, notify whole \nteam in order to get blocking situation resolved as soon as possible. \n",
+                "type": "+"
+            },
+            "Build Staging": {
+                "text": "Split the complete continuous integration workflow into individual stages to \nreduce feedback time. \n",
+                "type": "+"
+            },
+            "Automatically Build an Installer for Test System": {
+                "text": "Automatically build an installer as often as possible to test software on a \ntest system (for manual tests, or tests with real hardware). \n",
+                "type": "+"
+            },
+            "Continuous Deployment": {
+                "text": "Install the system to a test environment on every commit/push and on \nmanual request. Deployment to production environment is automated to \nprevent manual mistakes, too. \n\n",
+                "type": "+"
+            }
+        }
+    },
+    "license": {
+        "license type": "Attribution 4.0 International (CC BY 4.0)",
+        "license url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "Based on Clean Code Cheat Sheet V2.4 by Urs Enzler.",
+        "original data url": "https://www.planetgeek.ch/wp-content/uploads/2014/11/Clean-Code-V2.4.pdf"
+    }
+}

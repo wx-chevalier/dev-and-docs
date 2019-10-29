@@ -1,0 +1,77 @@
+{
+  "name": "clean-code-tips",
+  "displayName": "Clean Code Tips",
+  "description": "Displays a clean code tip each time you open VSCode to help us all become better engineers!",
+  "publisher": "chriswingler",
+  "version": "1.2.0",
+  "engines": {
+    "vscode": "^1.39.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "repository": {
+    "url": "https://github.com/chriswingler/clean-code-tips"
+  },
+  "icon": "images/logo.png",
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/Clean-Coding-Tips/vscode-extension/src/extension.js",
+  "contributes": {
+    "configuration": [
+      {
+        "title": "Clean Code Tips",
+        "properties": {
+          "tipTimer": {
+            "type": "string",
+            "enum": [
+              "5 minutes",
+              "10 minutes",
+              "15 minutes",
+              "30 minutes",
+              "1 hour",
+              "2 hours",
+              "4 hours",
+              "8 hours",
+              "1 day",
+              "1 week",
+              "1 month"
+            ],
+            "default": "2 hours",
+            "description": "Time between tips while window open",
+            "scope": "application"
+          }
+        }
+      }
+    ],
+    "commands": [
+      {
+        "command": "extension.displayTip",
+        "title": "Display Tip"
+      },
+      {
+        "command": "extension.config.configureTipTimer",
+        "title": "Configure Clean Code Tip timer"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^10.12.21",
+    "@types/vscode": "^1.39.0",
+    "glob": "^7.1.4",
+    "mocha": "^6.1.4",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.1",
+    "vscode-test": "^1.2.0"
+  }
+}
