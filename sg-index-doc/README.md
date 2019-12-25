@@ -14,7 +14,7 @@ $ npm run ts ./src/cli/build-index.ts link
 
 ```sh
 # 为本地的某个仓库生成目录文件
-$ npm run ts ./src/cli/generate-toc.ts
+$ npm run ts ./src/cli/generate-gitbook.ts
 
 # 为所有的仓库生成 GitBook Summary
 $ npm run ts ./src/cli/generate-summary.ts

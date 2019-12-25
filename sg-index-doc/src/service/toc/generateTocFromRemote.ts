@@ -1,15 +1,15 @@
-import { FileDescriptor, FileTree } from '../../util/fs/interface';
-import { getH1sFromMDString } from '../../util/markdown/md';
-import { ignoreFilesOrDirs } from '../../config/dict';
-import { GITHUB_PASSWORD, GITHUB_USERNAME } from '../../config/private';
+import { FileDescriptor, FileTree } from "../../util/fs/interface";
+import { getH1sFromMDString } from "../../util/markdown/md";
+import { ignoreFilesOrDirs } from "../../config/dict";
+import { GITHUB_PASSWORD, GITHUB_USERNAME } from "../../config/private";
 import {
   generateTocFromFileTree,
   generateTocFromFileTreeWithSubHeader
-} from '../../util/fs/file';
+} from "../../util/fs/file";
 
-const fs = require('fs-extra');
+const fs = require("fs-extra");
 
-const GitHub = require('github-api');
+const GitHub = require("github-api");
 
 const gh = new GitHub({
   username: GITHUB_USERNAME,
@@ -26,7 +26,7 @@ let handledNum = 0;
 export async function generateRepoToc(
   userName,
   repository,
-  basePath = '/',
+  basePath = "/",
   useSubHeader = false
 ) {
   // 获取到 Repository 对象
@@ -34,7 +34,7 @@ export async function generateRepoToc(
 
   currentDepth = 0;
 
-  const fileTree = await dfsWalkToGenerateFileTree(repo, '/', basePath);
+  const fileTree = await dfsWalkToGenerateFileTree(repo, "/", basePath);
 
   let toc;
 
@@ -47,7 +47,7 @@ export async function generateRepoToc(
     );
   }
 
-  fs.outputFile('toc.md', toc);
+  fs.outputFile("toc.md", toc);
 }
 
 /**
@@ -56,8 +56,8 @@ export async function generateRepoToc(
  * @return {string}
  */
 const formatToc = (file: FileDescriptor) => {
-  return `\n - [${file.name.replace('.md', '')}](${file.html_url}): ${file
-    .h1s[0] || ''} \n\n`;
+  return `\n - [${file.name.replace(".md", "")}](${file.html_url}): ${file
+    .h1s[0] || ""} \n\n`;
 };
 
 /**
@@ -72,11 +72,11 @@ async function dfsWalkToGenerateFileTree(repo, dir, path) {
   };
 
   // 递归获取到所有的内容
-  let { data: blobs } = await repo.getContents('master', path, true);
+  let { data: blobs } = await repo.getContents("master", path, true);
 
   for (let blob of blobs) {
     // 如果当前类型为文件，则直接添加到文件树中
-    if (blob.type === 'file') {
+    if (blob.type === "file") {
       // 抓取文件内容
       const content = (await repo.getBlob(blob.sha)).data;
 

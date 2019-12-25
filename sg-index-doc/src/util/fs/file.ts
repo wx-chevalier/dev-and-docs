@@ -1,12 +1,11 @@
-import { ignoreFilesOrDirs } from '../../config/dict';
-import { formatToc } from '../markdown/md';
-import { FileTree } from './interface';
-import { stringify } from 'querystring';
+import { ignoreFilesOrDirs } from "../../config/dict";
+import { formatToc } from "../markdown/md";
+import { FileTree } from "./interface";
 
-const walkSync = require('walk-sync');
-const readline = require('readline');
-const fs = require('fs');
-const debug = require('debug')('file');
+const walkSync = require("walk-sync");
+const readline = require("readline");
+const fs = require("fs");
+const debug = require("debug")("file");
 
 /**
  *
@@ -17,27 +16,27 @@ const debug = require('debug')('file');
  */
 export async function generateFileTree(parentDirectory: string) {
   const fileTree: FileTree = {
-    path: '',
+    path: "",
     dirs: {},
     files: []
   };
 
   const paths: string[] = walkSync(parentDirectory, {
-    ignore: ['.git', '.github', '.meta']
+    ignore: [".git", ".github", ".meta"]
   });
 
   for (let path of paths) {
-    let segments: string[] = path.split('/');
+    let segments: string[] = path.split("/");
 
     let obj: FileTree = fileTree;
 
     // 遍历每一段路径
     for (let segment of segments) {
-      if (segment.endsWith('.xmind') || segment.endsWith('.pdf')) {
+      if (segment.endsWith(".xmind") || segment.endsWith(".pdf")) {
         continue;
       }
 
-      if (segment.endsWith('.md')) {
+      if (segment.endsWith(".md")) {
         obj.files.push({
           path,
           name: segment,
@@ -50,13 +49,13 @@ export async function generateFileTree(parentDirectory: string) {
         }
 
         // 如果当前树中不存在结点，则创建空结点
-        if (!obj.hasOwnProperty('dirs')) {
-          obj['dirs'] = {};
+        if (!obj.hasOwnProperty("dirs")) {
+          obj["dirs"] = {};
         }
 
         // 判断是否存在目录结点
-        if (!obj['dirs'][segment]) {
-          obj['dirs'][segment] = {
+        if (!obj["dirs"][segment]) {
+          obj["dirs"][segment] = {
             path,
             dirs: {},
             files: []
@@ -64,7 +63,7 @@ export async function generateFileTree(parentDirectory: string) {
         }
 
         // 将子字典赋值给当前对象
-        obj = obj['dirs'][segment];
+        obj = obj["dirs"][segment];
       }
     }
   }
@@ -85,17 +84,17 @@ export function readMarkdownHeadersFromFile(path: string): Promise<string[]> {
       input: fs.createReadStream(path)
     });
 
-    rl.on('line', (line: string) => {
-      if (line.startsWith('# ')) {
-        headers.push(line.replace('# ', ''));
+    rl.on("line", (line: string) => {
+      if (line.startsWith("# ")) {
+        headers.push(line.replace("# ", ""));
       }
     });
 
-    rl.on('close', function(_: string) {
+    rl.on("close", function(_: string) {
       resolve(headers);
     });
 
-    rl.on('error', function(error: Error) {
+    rl.on("error", function(error: Error) {
       reject(error);
     });
   });
@@ -111,7 +110,7 @@ export function generateTocFromFileTree(
   fileTree: FileTree,
   currentDepth: number
 ): string {
-  let toc = '';
+  let toc = "";
 
   // 首先处理所有的文件
   for (let file of fileTree.files) {
@@ -147,10 +146,10 @@ export function generateTocFromFileTree(
 }
 
 export function getBlankFromDepth(depth: number) {
-  let str = '';
+  let str = "";
 
   for (let i = 0; i < depth; i += 1) {
-    str += '  ';
+    str += "  ";
   }
 
   return str;
