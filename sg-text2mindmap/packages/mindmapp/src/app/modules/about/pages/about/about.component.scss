@@ -1,0 +1,61 @@
+@import "~src/theme.scss";
+
+div.about {
+    height: 100%;
+
+    section {
+        position: relative;
+    }
+
+    section:nth-child(odd) {
+        background-color: white;
+    }
+
+    section:nth-child(even) {
+        background-color: #fafafa;
+    }
+
+    section.about-section {
+        > div {
+            padding: 20px 15px 40px 15px;
+
+            h1 {
+                color: mat-color($app-primary);
+            }
+
+            div.cards {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+
+                mat-card {
+                    flex: 1;
+                    min-width: 200px;
+                    margin: 10px;
+
+                    fa-icon {
+                        color: #565656;
+                    }
+
+                    ::ng-deep mat-card-header > div {
+                        margin-left: 0 !important;
+                    }
+                }
+            }
+
+            mat-list {
+                margin-top: -10px;
+
+                mat-list-item {
+                    height: 40px;
+
+                    a {
+                        color: mat-color($app-primary);
+                        text-decoration: none;
+                        padding-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

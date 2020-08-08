@@ -1,0 +1,42 @@
+@import "~src/theme.scss";
+
+mat-toolbar {
+    overflow-x: auto;
+    height: 60px;
+    padding: 0 8px;
+    border-bottom: 1px solid lightgray;
+    background-color: white !important;
+
+    div.vertical-line {
+        height: 100%;
+        margin: 0 10px;
+
+        > div {
+            width: 1px;
+            background-color: #c2c2c2;
+            height: 100%;
+        }
+    }
+
+    span.toolbar-spacer {
+        flex: 1 1 auto;
+        min-width: 50px;
+    }
+}
+
+// Scrollbar properties.
+mat-toolbar::-webkit-scrollbar {
+    height: 6px;
+}
+
+mat-toolbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+mat-toolbar::-webkit-scrollbar-thumb {
+    background: mat-color($app-primary, .7);
+}
+
+mat-toolbar::-webkit-scrollbar-thumb:hover {
+    background: mat-color($app-primary, .8);
+}

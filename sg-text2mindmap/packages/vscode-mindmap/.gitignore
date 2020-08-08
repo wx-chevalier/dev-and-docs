@@ -1,0 +1,6 @@
+out
+node_modules
+.vscode-test/
+*.vsix
+webui/node_modules
+webui/bower_components
