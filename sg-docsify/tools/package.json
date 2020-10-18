@@ -1,0 +1,30 @@
+{
+  "name": "docsify-tools",
+  "version": "1.0.19",
+  "main": "index.js",
+  "license": "MIT",
+  "bin": {
+    "docsify-auto-sidebar": "./bin/docsify-auto-sidebar.js",
+    "docsify-init": "./bin/docsify-init.js",
+    "generate-ts-docs": "./bin/generate-ts-docs.js"
+  },
+  "scripts": {
+    "prepublish": "tsc"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "@types/mkdirp": "^0.5.2",
+    "@types/node": "^11.13.0",
+    "@types/yargs": "^12.0.11",
+    "typescript": "^3.4.5",
+    "jest": "^24.5.0",
+    "ts-jest": "^24.0.1"
+  },
+  "dependencies": {
+    "@microsoft/api-extractor-model": "^7.0.28",
+    "@microsoft/ts-command-line": "^4.2.3",
+    "colors": "^1.3.3",
+    "mkdirp": "^0.5.1",
+    "yargs": "^13.2.2"
+  }
+}
