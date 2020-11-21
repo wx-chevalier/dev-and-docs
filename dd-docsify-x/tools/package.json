@@ -1,29 +1,27 @@
 {
-  "name": "docsify-tools",
-  "version": "1.0.19",
+  "name": "@m-fe/docsify-x",
+  "version": "0.0.2",
   "main": "index.js",
   "license": "MIT",
   "bin": {
-    "docsify-auto-sidebar": "./bin/docsify-auto-sidebar.js",
-    "docsify-init": "./bin/docsify-init.js",
-    "generate-ts-docs": "./bin/generate-ts-docs.js"
-  },
-  "scripts": {
-    "prepublish": "tsc"
+    "docsify-x-auto-sidebar": "./bin/docsify-auto-sidebar.js",
+    "docsify-x-init": "./bin/docsify-init.js",
+    "generate-x-ts-docs": "./bin/generate-ts-docs.js"
   },
   "devDependencies": {
+    "@m-fe/app-config": "^0.7.1",
+    "@m-fe/tsconfig": "^0.0.4",
     "@types/jest": "^24.0.11",
     "@types/mkdirp": "^0.5.2",
-    "@types/node": "^11.13.0",
+    "@types/node": "^14.14.9",
     "@types/yargs": "^12.0.11",
-    "typescript": "^3.4.5",
-    "jest": "^24.5.0",
-    "ts-jest": "^24.0.1"
+    "typescript": "^3.4.5"
   },
   "dependencies": {
     "@microsoft/api-extractor-model": "^7.0.28",
     "@microsoft/ts-command-line": "^4.2.3",
     "colors": "^1.3.3",
+    "fs-extra": "^9.0.1",
     "mkdirp": "^0.5.1",
     "yargs": "^13.2.2"
   }
