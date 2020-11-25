@@ -7,6 +7,8 @@ Quickly document your (typescript or otherwise) projects!
 - generate-ts-doc generates markdown documentation from api-extractor api.json files
 - docsify-auto-sidebar automatically populates the sidebar from the resulting docs tree
 
+本项目是对 docsify-tools 的定制化升级，包括支持 .index 文件默认排序、默认隐藏 examples 目录等。
+
 ### docsify-init
 
 Usage:
