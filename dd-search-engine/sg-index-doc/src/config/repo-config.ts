@@ -28,25 +28,25 @@ const baseLocalDir = "/Users/zhangzixiong/Desktop/Docs";
 
 // 所有仓库的声明
 const repos: { [key: string]: ReposityConfig } = {
-  "Awesome-Lists": {
-    title: "精而全的技术资料索引",
-    description:
-      "Awesome Lists, Guide to Galaxy, curated, worthy and up-to-date links/reading list for ITCS-Coding/Algorithm/SoftwareArchitecture/AI. ITCS-编程/算法/软件架构/人工智能等领域的文章/书籍/资料/项目链接精选，岁月沉淀的美好",
-    sUrl: "https://github.com/wxyyxc1992/Awesome-Lists",
-    chapterHeader: "https://parg.co/UGo",
-    depth: 2,
-    localPath: `${baseLocalDir}/Awesome-Lists`
-  },
+  // "Awesome-Lists": {
+  //   title: "精而全的技术资料索引",
+  //   description:
+  //     "Awesome Lists, Guide to Galaxy, curated, worthy and up-to-date links/reading list for ITCS-Coding/Algorithm/SoftwareArchitecture/AI. ITCS-编程/算法/软件架构/人工智能等领域的文章/书籍/资料/项目链接精选，岁月沉淀的美好",
+  //   sUrl: "https://github.com/wxyyxc1992/Awesome-Lists",
+  //   chapterHeader: "https://parg.co/UGo",
+  //   depth: 2,
+  //   localPath: `${baseLocalDir}/Awesome-Lists`
+  // },
 
-  "Awesome-CS-Books": {
-    title: "藏书阁",
-    description:
-      ":books: Awesome CS Books/Series(.pdf by git lfs) Warehouse, ProgrammingLanguage, SoftwareEngineering, Web, AI, ServerSideApplication, Infrastructure, FE etc. :dizzy: 优秀计算机科学与技术领域相关的书籍归档",
-    sUrl: "https://github.com/wxyyxc1992/Awesome-CS-Books",
-    chapterHeader: "https://parg.co/UGo",
-    depth: 2,
-    localPath: `${baseLocalDir}/Awesome-CS-Books`
-  },
+  // "Awesome-CS-Books": {
+  //   title: "藏书阁",
+  //   description:
+  //     ":books: Awesome CS Books/Series(.pdf by git lfs) Warehouse, ProgrammingLanguage, SoftwareEngineering, Web, AI, ServerSideApplication, Infrastructure, FE etc. :dizzy: 优秀计算机科学与技术领域相关的书籍归档",
+  //   sUrl: "https://github.com/wxyyxc1992/Awesome-CS-Books-and-Digests",
+  //   chapterHeader: "https://parg.co/UGo",
+  //   depth: 2,
+  //   localPath: `${baseLocalDir}/xCompass/Awesome-CS-Books-and-Digests`,
+  // },
 
   "Awesome-CheatSheets": {
     title: "全栈开发速学速查手册集锦",
@@ -55,7 +55,7 @@ const repos: { [key: string]: ReposityConfig } = {
     sUrl: "https://github.com/wxyyxc1992/Awesome-CheatSheets",
     chapterHeader: "https://parg.co/UCb",
     depth: 2,
-    localPath: `${baseLocalDir}/Awesome-CheatSheets`
+    localPath: `${baseLocalDir}/xCompass/Awesome-CheatSheets`,
   },
 
   "ProgrammingLanguage-Series": {
@@ -65,7 +65,7 @@ const repos: { [key: string]: ReposityConfig } = {
     sUrl: "https://github.com/wxyyxc1992/ProgrammingLanguage-Series",
     chapterHeader: "https://parg.co/USw",
     depth: 1,
-    localPath: `${baseLocalDir}/ProgrammingLanguage-Series`
+    localPath: `${baseLocalDir}/PL/PLT-Series`,
   },
 
   "Web-Series": {
@@ -75,17 +75,17 @@ const repos: { [key: string]: ReposityConfig } = {
     sUrl: "https://github.com/wxyyxc1992/Web-Series",
     chapterHeader: "https://parg.co/U0y",
     depth: 1,
-    localPath: `${baseLocalDir}/Web-Series`
+    localPath: `${baseLocalDir}/Frontend/Web-Series`,
   },
 
   "AIDL-Series": {
     title: "数据科学与人工智能",
     description:
       ":books: 现代 Web 开发，现代 Web 开发导论 | 基础篇 | 进阶篇 | 架构优化篇 | React 篇 | Vue 篇",
-    sUrl: "https://github.com/wxyyxc1992/AIDL-Series",
+    sUrl: "https://github.com/wxyyxc1992/AI-Series",
     chapterHeader: "https://parg.co/U0y",
     depth: 1,
-    localPath: `${baseLocalDir}/AIDL-Series`
+    localPath: `${baseLocalDir}/AI/AI-Series`,
   },
 
   "Backend-Series": {
@@ -95,7 +95,7 @@ const repos: { [key: string]: ReposityConfig } = {
     sUrl: "https://github.com/wxyyxc1992/Backend-Series",
     chapterHeader: "https://parg.co/U0y",
     depth: 1,
-    localPath: `${baseLocalDir}/Backend-Series`
+    localPath: `${baseLocalDir}/Backend/Backend-Series`,
   },
 
   "Spring-Series": {
@@ -105,7 +105,7 @@ const repos: { [key: string]: ReposityConfig } = {
     sUrl: "https://github.com/wxyyxc1992/Spring-Series",
     chapterHeader: "https://parg.co/U0y",
     depth: 1,
-    localPath: `${baseLocalDir}/Spring-Series`
+    localPath: `${baseLocalDir}/Backend/Spring-Series`,
   },
 
   "DistributedSystem-Series": {
@@ -115,7 +115,7 @@ const repos: { [key: string]: ReposityConfig } = {
     sUrl: "https://github.com/wxyyxc1992/DistributedSystem-Series",
     chapterHeader: "https://parg.co/U0y",
     depth: 1,
-    localPath: `${baseLocalDir}/DistributedSystem-Series`
+    localPath: `${baseLocalDir}/Infrastructure/DistributedSystem-Series`,
   },
 
   "Frontend-Series": {
@@ -125,7 +125,7 @@ const repos: { [key: string]: ReposityConfig } = {
     sUrl: "https://github.com/wxyyxc1992/Frontend-Series",
     chapterHeader: "https://parg.co/U0y",
     depth: 1,
-    localPath: `${baseLocalDir}/Frontend-Series`
+    localPath: `${baseLocalDir}/Frontend/Frontend-Series`,
   },
 
   "SoftwareEngineering-Series": {
@@ -135,7 +135,7 @@ const repos: { [key: string]: ReposityConfig } = {
     sUrl: "https://github.com/wxyyxc1992/SoftwareEngineering-Series",
     chapterHeader: "https://parg.co/U0y",
     depth: 1,
-    localPath: `${baseLocalDir}/SoftwareEngineering-Series`
+    localPath: `${baseLocalDir}/Architecture/SoftwareEngineering-Series`,
   },
 
   "Product-Series": {
@@ -145,8 +145,8 @@ const repos: { [key: string]: ReposityConfig } = {
     sUrl: "https://github.com/wxyyxc1992/Product-Series",
     chapterHeader: "https://parg.co/U0y",
     depth: 1,
-    localPath: `${baseLocalDir}/Product-Series`
-  }
+    localPath: `${baseLocalDir}/Business/Product-Series`,
+  },
 };
 
 export default repos;

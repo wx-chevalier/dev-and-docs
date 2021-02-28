@@ -4,7 +4,7 @@ import * as md5 from "md5";
 import * as walkSync from "walk-sync";
 import { MeiliSearch } from "meilisearch";
 
-import repos, { ReposityConfig } from "../../config/repo-config";
+import { ReposityConfig } from "../../config/repo-config";
 import { readMarkdownHeadersFromFile } from "../../util/fs/file";
 import { MEILI_PRIVATE_KEY } from "../../config/private";
 
@@ -18,24 +18,24 @@ const readFileAsync: (
   args: { encoding: string }
 ) => Promise<string> = promisify(fs.readFile);
 
-export async function buildDocIndex(client) {
-  const index = client.initIndex("doc");
+export async function buildDocIndex(repos: ReposityConfig[]) {
+  const index = meiliClient.index("docs");
 
   // 设置相关性
-  index.setSettings({
+  index.updateSettings({
     searchableAttributes: ["fileName", "repo", "categories", "desc", "content"],
     attributesForFaceting: ["categories", "repo"],
   });
 
-  Object.keys(repos).forEach((repoName) => {
+  repos.forEach((repo) => {
     // 获取仓库的配置信息
-    const repo: ReposityConfig = repos[repoName];
 
     const files = walkSync(repo.localPath).filter(
       (path) =>
         (path.endsWith(".md") || path.endsWith(".pdf")) &&
         path !== "README.md" &&
-        path.indexOf("Weekly") === -1
+        path.indexOf("Weekly") === -1 &&
+        path.indexOf("examples") === -1
     );
 
     files.forEach(async (file) => {
@@ -46,19 +46,21 @@ export async function buildDocIndex(client) {
 
       // 判断是否为 PDF
       if (file.endsWith("pdf")) {
-        index.addObject({
-          objectID: md5(href),
-          fileName,
-          repo: repoName,
-          categories: file
-            .split("/")
-            .filter(
-              (c) => Number.isNaN(parseInt(c, 10)) && c.indexOf(".md") === -1
-            ),
-          href,
-          desc: fileName,
-          content: fileName,
-        });
+        index.addDocuments([
+          {
+            id: md5(href),
+            fileName,
+            repo: repo.name,
+            categories: file
+              .split("/")
+              .filter(
+                (c) => Number.isNaN(parseInt(c, 10)) && c.indexOf(".md") === -1
+              ),
+            href,
+            desc: fileName,
+            content: fileName,
+          },
+        ]);
 
         return;
       }
@@ -77,7 +79,7 @@ export async function buildDocIndex(client) {
         .replace(/\[(.*)\]\(http.*\)/g, (_, __) => __)
         .replace(/```\w*.*```/g, "");
 
-      const contents = filteredContent.match(/.{1,4000}/g);
+      const contents = [filteredContent];
 
       if (!contents) {
         return;
@@ -85,9 +87,9 @@ export async function buildDocIndex(client) {
 
       // 分割过长内容
       const objs = contents.map((content, index) => ({
-        objectID: index ? md5(`${href}${index}`) : md5(href),
+        id: index ? md5(`${href}${index}`) : md5(href),
         fileName,
-        repo: repoName,
+        repo: repo.name,
         categories: file
           .split("/")
           .filter(
@@ -99,25 +101,12 @@ export async function buildDocIndex(client) {
       }));
 
       try {
-        /**
-           * {
-           * "objectID":md5(href),
-            "fileName": "Build-Your-Own-X-From-Scratch.md",
-            "repo": "Awesome-Lists",
-            "categories": [
-              "Zen"
-            ],
-            "href": "https://github.com/wxyyxc1992/Awesome-Lists/blob/master/Zen/Build-Your-Own-X-From-Scratch.md",
-            "desc": "Build Your Own X From Scratch",
-            "content": "- [Laptop #Project#](https://github.com/thoughtbot/laptop): A shell script to set up a macOS laptop for web and mobile development.",
-          }
-          */
-        index.addObjects(objs);
+        index.addDocuments(objs);
       } catch (e) {
         console.error(e);
       }
-
-      console.log(`${repoName} indexed finally.`);
     });
+
+    console.log(`${repo.name} indexed finally.`);
   });
 }

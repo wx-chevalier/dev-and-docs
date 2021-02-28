@@ -10,6 +10,7 @@
   "author": "wxyyxc1992@github",
   "license": "ISC",
   "dependencies": {
+    "add": "^2.0.6",
     "algoliasearch": "^3.30.0",
     "bloom-filters": "^0.5.2",
     "bloomfilter": "^0.0.18",
@@ -22,6 +23,7 @@
     "isomorphic-fetch": "^2.2.1",
     "markdown-toc": "^1.2.0",
     "md5": "^2.2.1",
+    "meilisearch": "^0.18.1",
     "walk-sync": "^0.3.2"
   },
   "devDependencies": {
