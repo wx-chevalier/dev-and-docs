@@ -1,12 +1,15 @@
 {
   "name": "@m-fe/docsify-x",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "main": "index.js",
   "license": "MIT",
   "bin": {
     "docsify-x-auto-sidebar": "./bin/docsify-auto-sidebar.js",
     "docsify-x-init": "./bin/docsify-init.js",
     "generate-x-ts-docs": "./bin/generate-ts-docs.js"
+  },
+  "scripts": {
+    "build": "tsc"
   },
   "devDependencies": {
     "@m-fe/app-config": "^0.7.1",

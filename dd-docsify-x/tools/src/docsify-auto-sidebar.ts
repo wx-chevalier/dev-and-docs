@@ -44,14 +44,24 @@ function buildTree(
   for (let fileName of fileNames) {
     if (ignores.test(fileName)) continue;
 
-    let fileLink = dirLink + "/" + fileName;
-    let filePath = path.join(dirPath, fileName);
+    const fileLink = dirLink + "/" + fileName;
+    const filePath = path.join(dirPath, fileName);
     if (fs.statSync(filePath).isDirectory()) {
-      let sub = buildTree(filePath, fileName, fileLink, withSequenceNumber);
+      const sub = buildTree(filePath, fileName, fileLink, withSequenceNumber);
       if (sub.children != null && sub.children.length > 0) children.push(sub);
     } else if (isDoc.test(fileName)) {
       children.push({ name: fileName, link: fileLink });
     }
+  }
+
+  // 最后构建 .more
+  if (fileNames.includes(".more")) {
+    const fileName = "参考资料";
+    const filePath = path.join(dirPath, '.more');
+    const fileLink = dirLink + "/" + '.more';
+
+    const sub = buildTree(filePath, fileName, fileLink, withSequenceNumber);
+    if (sub.children != null && sub.children.length > 0) { children.push(sub) };
   }
 
   return { name, children, link: dirLink };
@@ -104,6 +114,8 @@ function renderToMd(
     let prefix = "";
 
     if (tree.name) {
+      const childrenNum = (tree.children||[]).filter(c=>!c.name.includes("README")).length;
+
       if (linkDir || fileNames.has("README.md")) {
         let linkPath = tree.link.replace(/ /g, "%20");
 
@@ -113,9 +125,9 @@ function renderToMd(
 
         prefix = `- [${sequencePrefix} ${niceName(
           path.basename(tree.name, ".md")
-        )}](${linkPath})\n`;
+        )}${childrenNum?` [${childrenNum}]`:""}](${linkPath})\n`;
       } else {
-        prefix = `- ${sequencePrefix} ${niceName(tree.name)}\n`;
+        prefix = `- ${sequencePrefix} ${niceName(tree.name)}${childrenNum?` [${childrenNum}]`:""}\n`;
       }
     }
 
