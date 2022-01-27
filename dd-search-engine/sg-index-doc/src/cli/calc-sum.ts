@@ -1,14 +1,15 @@
 import * as walkSync from "walk-sync";
 
-const destDir = "/Users/zhangzixiong/Desktop/UT/docs/发票";
+const destDir =
+  "/Users/zhangzixiong/Library/Containers/com.kingsoft.wpsoffice.mac/Data/Library/Application Support/Kingsoft/WPS Cloud Files/userdata/qing/filecache/27701737/联泰/财务、采购、公共关系/发票";
 
 const files = walkSync(destDir);
 
 console.log(
   files.reduce((prev, cur) => {
-    const fileName = cur.split("/")[1];
+    const fileName = cur.split("/")[2];
 
-    if (!fileName) {
+    if (!fileName || !fileName.endsWith("pdf")) {
       return prev;
     }
 
