@@ -23,50 +23,83 @@ function niceName(name: string) {
 }
 
 function syncDir(srcDir: string, targetDir: string) {
-  const reolativePaths: string[] = walkSync(srcDir, {
+  const relativePaths: string[] = walkSync(srcDir, {
     ignore: [".git", ".github", ".meta"],
-    directories: false
+    directories: true
   });
-  const dirName = _.last(srcDir.split("/"))
+  const repoName = _.last(srcDir.split("/"))
 
-  for (let relativePath of reolativePaths) {
-    if (ignores.test(relativePath) || !isDoc.test(relativePath)) continue;
+  for (let relativePath of relativePaths) {
+    if (ignores.test(relativePath)) continue;
+
+    const srcFilePath = path.join(srcDir, relativePath);
 
     let segments: string[] = relativePath.split("/");
+
+
+      if(_.last(segments)===""){
+        segments.pop()
+      }
     let fileName = segments[segments.length - 1];
 
-    if(fileName==="README.md"){
-      fileName = segments.length>1?segments[segments.length - 2]:dirName;
-    }
-
-    fileName=fileName.replace(":","：");
-
-    const srcFilePath = path.join(srcDir,relativePath);
-    // hugo 仅支持路径小写
-    const targetFilePath = path.join(targetDir, dirName, relativePath.replace("README.md","_index.md")).toLowerCase();
-
-    if(fs.existsSync(targetFilePath)){{
-      fs.removeSync(targetFilePath);
-    }}
-
-    // 读取内容
-    const fileContent= fs.readFileSync(srcFilePath, { encoding: "utf-8" });
-
-    // 前缀添加
-    const finalContent = 
-    `
+    // 判断是文件还是文件夹
+    if (fs.lstatSync(srcFilePath).isDirectory()) { 
+   
+      // 判断是否存在 README，不存在则写入
+      if(!fs.existsSync(path.join(srcFilePath, "README.md"))){
+        const targetFilePath = path.join(targetDir,repoName, relativePath, "_index.md").toLowerCase();
+        fs.ensureFileSync(targetFilePath);
+      // 写入内容
+      fs.writeFileSync(targetFilePath, 
+`
 ---
-title: ${fileName.replace(".md","")}
-linktitle: ${fileName.replace(".md","")}
+title: ${fileName.replace(".md", "")}
+linktitle: ${fileName.replace(".md", "")}
+type: book
+---
+`
+        );
+      }
+    } else {
+
+      if(!isDoc.test(relativePath)){continue}
+      
+      if (fileName === "README.md") {
+        fileName = segments.length > 1 ? segments[segments.length - 2] : repoName;
+      }
+
+      fileName = fileName.replace(":", "：").replace("[", "").replace("]", '');
+
+      // hugo 仅支持路径小写
+      const targetFilePath = path.join(targetDir, repoName, relativePath.replace("README.md", "_index.md")).toLowerCase();
+
+      if (fs.existsSync(targetFilePath)) {
+        {
+          fs.removeSync(targetFilePath);
+        }
+      }
+
+      // 读取内容
+      const fileContent = fs.readFileSync(srcFilePath, { encoding: "utf-8" });
+
+      // 前缀添加
+      const finalContent =
+        `
+---
+title: ${fileName.replace(".md", "")}
+linktitle: ${fileName.replace(".md", "")}
 type: book
 ---
 
-    ${fileContent}
+${fileContent}
     `
-    fs.ensureFileSync(targetFilePath);
-    // 写入内容
-    fs.writeFileSync(targetFilePath,finalContent);
+      fs.ensureFileSync(targetFilePath);
+      // 写入内容
+      fs.writeFileSync(targetFilePath, finalContent);
+    }
   }
+
+
 }
 
 
@@ -87,9 +120,9 @@ let args = yargs
   }).argv;
 
 let srcDir = path.resolve(process.cwd(), args.srcDir || "./docs");
-let targetDir = args.targetDir ;
+let targetDir = args.targetDir;
 
-// let srcDir = "/Users/zhangzixiong/Desktop/Docs/Awesome/Awesome-CS-Books-and-Digests";
+// let srcDir = "/Users/zhangzixiong/Desktop/Docs/Awesome/Awesome-Lists";
 // let targetDir = "/Users/zhangzixiong/Desktop/Workspace/Github/ngte/seo-markdown-blog-site/hugo/content/books";
 
 try {
