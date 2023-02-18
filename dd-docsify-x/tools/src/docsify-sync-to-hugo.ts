@@ -39,7 +39,7 @@ function syncDir(srcDir: string, targetDir: string) {
       fileName = segments.length>1?segments[segments.length - 2]:dirName;
     }
 
-    fileName=fileName.replace(": ","：");
+    fileName=fileName.replace(":","：");
 
     const srcFilePath = path.join(srcDir,relativePath);
     // hugo 仅支持路径小写
