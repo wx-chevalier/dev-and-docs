@@ -2746,20 +2746,13 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react@*":
+"@types/react@*", "@types/react@^16":
   version "17.0.0"
   resolved "https://registry.npm.taobao.org/@types/react/download/@types/react-17.0.0.tgz#5af3eb7fad2807092f0046a1302b7823e27919b8"
   integrity sha1-WvPrf60oBwkvAEahMCt4I+J5Gbg=
   dependencies:
     "@types/prop-types" "*"
     csstype "^3.0.2"
-
-"@types/react@^16":
-  version "16.14.1"
-  resolved "https://registry.npm.taobao.org/@types/react/download/@types/react-16.14.1.tgz#da2ecb638385614a5573e16e4aa7daf936dbead5"
-  integrity sha1-2i7LY4OFYUpVc+FuSqfa+Tbb6tU=
-  dependencies:
-    "@types/prop-types" "*"
 
 "@types/redux-actions@^2.6.1":
   version "2.6.1"
@@ -6029,6 +6022,11 @@ enquirer@^2.3.5, enquirer@^2.3.6:
   integrity sha1-Kn/l3WNKHkElqXXsmU/1RW3Dc00=
   dependencies:
     ansi-colors "^4.1.1"
+
+ensure-posix-path@^1.0.0:
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/ensure-posix-path/-/ensure-posix-path-1.1.1.tgz#3c62bdb19fa4681544289edb2b382adc029179ce"
+  integrity sha512-VWU0/zXzVbeJNXvME/5EmLuEj2TauvoaTz6aFYK1Z92JCBlDlZ3Gu0tuGR42kpW1754ywTs+QB0g5TP0oj9Zaw==
 
 entities@^1.1.1, entities@~1.1.1:
   version "1.1.2"
@@ -9926,6 +9924,13 @@ markdown-table@^2.0.0:
   dependencies:
     repeat-string "^1.0.0"
 
+matcher-collection@^1.0.0:
+  version "1.1.2"
+  resolved "https://registry.npmjs.org/matcher-collection/-/matcher-collection-1.1.2.tgz#1076f506f10ca85897b53d14ef54f90a5c426838"
+  integrity sha512-YQ/teqaOIIfUHedRam08PB3NK7Mjct6BvzRnJmpGDm8uFXpNr1sbY4yuflI5JcEs6COpYA0FpRQhSDBf1tT95g==
+  dependencies:
+    minimatch "^3.0.2"
+
 mathml-tag-names@^2.1.3:
   version "2.1.3"
   resolved "https://registry.npm.taobao.org/mathml-tag-names/download/mathml-tag-names-2.1.3.tgz#4ddadd67308e780cf16a47685878ee27b736a0a3"
@@ -10220,6 +10225,13 @@ minimalistic-crypto-utils@^1.0.0, minimalistic-crypto-utils@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/minimalistic-crypto-utils/download/minimalistic-crypto-utils-1.0.1.tgz#f6c00c1c0b082246e5c4d99dfb8c7c083b2b582a"
   integrity sha1-9sAMHAsIIkblxNmd+4x8CDsrWCo=
+
+minimatch@^3.0.2:
+  version "3.1.2"
+  resolved "https://registry.npmjs.org/minimatch/-/minimatch-3.1.2.tgz#19cd194bfd3e428f049a70817c038d89ab4be35b"
+  integrity sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==
+  dependencies:
+    brace-expansion "^1.1.7"
 
 minimatch@^3.0.4:
   version "3.0.4"
@@ -16292,6 +16304,14 @@ w3c-xmlserializer@^2.0.0:
   integrity sha1-PnEEoFt1FGzGD1ZDgLf2g6zxAgo=
   dependencies:
     xml-name-validator "^3.0.0"
+
+walk-sync@^0.3.2:
+  version "0.3.4"
+  resolved "https://registry.npmjs.org/walk-sync/-/walk-sync-0.3.4.tgz#cf78486cc567d3a96b5b2237c6108017a5ffb9a4"
+  integrity sha512-ttGcuHA/OBnN2pcM6johpYlEms7XpO5/fyKIr48541xXedan4roO8cS1Q2S/zbbjGH/BarYDAMeS2Mi9HE5Tig==
+  dependencies:
+    ensure-posix-path "^1.0.0"
+    matcher-collection "^1.0.0"
 
 walker@^1.0.7, walker@~1.0.5:
   version "1.0.7"

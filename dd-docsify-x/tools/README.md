@@ -15,6 +15,8 @@ Usage:
 
 ```sh
 docsify-init [-r repoDir] [-d docsDir]
+
+npm run ts src/docsify-sync-to-hugo.ts --src /Users/zhangzixiong/Desktop/Docs/Business/Industry-Series --target /Users/zhangzixiong/Desktop/Workspace/Github/ngte/seo-markdown-blog-site/hugo/content/books
 ```
 
 Initializes docsify in the specified repo and docs sub-directory. By default, the repo is the

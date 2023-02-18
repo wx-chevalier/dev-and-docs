@@ -27,6 +27,11 @@ $ npm run ts ./src/cli/generate-summary.ts
 $ npm run ts ./src/cli/sync-wiz.ts
 ```
 
+```sh
+# 同步到 hugo
+$ npm run ts ./src/cli/sync-hugo.ts
+```
+
 - 数据统计
 
 ```sh

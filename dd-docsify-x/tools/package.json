@@ -1,15 +1,17 @@
 {
   "name": "@m-fe/docsify-x",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "main": "index.js",
   "license": "MIT",
   "bin": {
     "docsify-x-auto-sidebar": "./bin/docsify-auto-sidebar.js",
     "docsify-x-init": "./bin/docsify-init.js",
-    "generate-x-ts-docs": "./bin/generate-ts-docs.js"
+    "generate-x-ts-docs": "./bin/generate-ts-docs.js",
+    "docsify-sync-to-hugo": "./bin/docsify-sync-to-hugo.js"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "ts": "ts-node"
   },
   "devDependencies": {
     "@m-fe/app-config": "^0.7.1",
@@ -26,6 +28,10 @@
     "colors": "^1.3.3",
     "fs-extra": "^9.0.1",
     "mkdirp": "^0.5.1",
-    "yargs": "^13.2.2"
+    "yargs": "^13.2.2",
+    "walk-sync": "^0.3.2"
+  },
+  "resolutions": {
+    "@types/react": "*"
   }
 }
