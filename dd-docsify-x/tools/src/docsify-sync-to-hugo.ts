@@ -47,7 +47,7 @@ function syncDir(srcDir: string, targetDir: string) {
    
       // 判断是否存在 README，不存在则写入
       if(!fs.existsSync(path.join(srcFilePath, "README.md"))){
-        const targetFilePath = path.join(targetDir,repoName, relativePath, "_index.md");
+        const targetFilePath = path.join(targetDir,repoName, relativePath, "_index.md").toLowerCase();
         fs.ensureFileSync(targetFilePath);
       // 写入内容
       fs.writeFileSync(targetFilePath, 
@@ -71,7 +71,7 @@ type: book
       fileName = fileName.replace(":", "：").replace("[", "").replace("]", '');
 
       // hugo 仅支持路径小写
-      const targetFilePath = path.join(targetDir, repoName, relativePath.replace("README.md", "_index.md"));
+      const targetFilePath = path.join(targetDir, repoName, relativePath.replace("README.md", "_index.md")).toLowerCase();
 
       if (fs.existsSync(targetFilePath)) {
         {
