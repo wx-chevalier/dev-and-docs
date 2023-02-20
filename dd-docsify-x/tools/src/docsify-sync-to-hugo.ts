@@ -56,6 +56,7 @@ function syncDir(srcDir: string, targetDir: string) {
 title: ${fileName.replace(".md", "")}
 linktitle: ${fileName.replace(".md", "")}
 type: book
+commentable: true
 ---
 `
         );
@@ -89,6 +90,7 @@ type: book
 title: ${fileName.replace(".md", "")}
 linktitle: ${fileName.replace(".md", "")}
 type: book
+commentable: true
 ---
 
 ${fileContent}
