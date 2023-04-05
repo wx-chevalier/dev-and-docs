@@ -24,7 +24,7 @@ function niceName(name: string) {
 
 function syncDir(srcDir: string, targetDir: string) {
   const relativePaths: string[] = walkSync(srcDir, {
-    ignore: [".git", ".github", ".meta"],
+    ignore: [".git", ".github", ".meta", 'examples'],
     directories: true
   });
   const repoName = _.last(srcDir.split("/"))
@@ -37,21 +37,21 @@ function syncDir(srcDir: string, targetDir: string) {
     let segments: string[] = relativePath.split("/");
 
 
-      if(_.last(segments)===""){
-        segments.pop()
-      }
+    if (_.last(segments) === "") {
+      segments.pop()
+    }
     let fileName = segments[segments.length - 1];
 
     // 判断是文件还是文件夹
-    if (fs.lstatSync(srcFilePath).isDirectory()) { 
-   
+    if (fs.lstatSync(srcFilePath).isDirectory()) {
+
       // 判断是否存在 README，不存在则写入
-      if(!fs.existsSync(path.join(srcFilePath, "README.md"))){
-        const targetFilePath = path.join(targetDir,repoName, relativePath, "_index.md").toLowerCase();
+      if (!fs.existsSync(path.join(srcFilePath, "README.md"))) {
+        const targetFilePath = path.join(targetDir, repoName, relativePath, "_index.md").toLowerCase();
         fs.ensureFileSync(targetFilePath);
-      // 写入内容
-      fs.writeFileSync(targetFilePath, 
-`
+        // 写入内容
+        fs.writeFileSync(targetFilePath,
+          `
 ---
 title: ${fileName.replace(".md", "")}
 linktitle: ${fileName.replace(".md", "")}
@@ -63,8 +63,8 @@ commentable: true
       }
     } else {
 
-      if(!isDoc.test(relativePath)){continue}
-      
+      if (!isDoc.test(relativePath)) { continue }
+
       if (fileName === "README.md") {
         fileName = segments.length > 1 ? segments[segments.length - 2] : repoName;
       }
