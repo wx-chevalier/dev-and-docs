@@ -7,7 +7,7 @@ import _ from "lodash";
 
 const walkSync = require("walk-sync");
 
-let ignores = /node_modules|^\.|sidebar|_sidebar|_docsify|code|examples/;
+let ignores = /node_modules|^\.|sidebar|_sidebar|_docsify|codes|examples/;
 let isDoc = /.md$/;
 
 type Entry = {
